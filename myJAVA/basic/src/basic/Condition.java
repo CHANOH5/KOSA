@@ -23,7 +23,7 @@ public class Condition{
         }
         */
        
-        /*
+        
         //int year = 2023;
         System.out.print("출생 년도를 입력하세요.");
         java.util.Scanner sc = new java.util.Scanner(System.in);
@@ -33,32 +33,41 @@ public class Condition{
         // 년도를 12로 나눈 나머지값이 0이면 원숭이,
 
         int mod = year % 12;
-        if ( mod == 0) {
-            System.out.println("원숭이");
-        } else if ( mod == 1 ) {
-            System.out.println("닭");
-        } else if ( mod == 2 ) {
-            System.out.println("개");
-        }  else if ( mod == 3 ) {
-            System.out.println("돼지");
-        }  else if ( mod == 4 ) {
-            System.out.println("쥐");
-        }  else if ( mod == 5 ) {
-            System.out.println("소");
-        }  else if ( mod == 6 ) {
-            System.out.println("호랑이");
-        }  else if ( mod == 7 ) {
-            System.out.println("토끼");
-        }  else if ( mod == 8 ) {
-            System.out.println("용");
-        }  else if ( mod == 9 ) {
-            System.out.println("뱀");
-        }  else if ( mod == 10 ) {
-            System.out.println("말");
-        }  else if ( mod == 11 ) {
-            System.out.println("양");
-        };
-        */
+        
+        // ==========  배열로 변환 =========
+        
+        String[] aa = { "원숭이", "닭", "개", "돼지", "쥐", "소", "호랑이", "토끼", "용", "뱀", "말", "양" };
+        System.out.println(aa[mod]+"띠 입니다.");
+        
+        // =================================
+        
+        
+//        if ( mod == 0) {
+//            System.out.println("원숭이");
+//        } else if ( mod == 1 ) {
+//            System.out.println("닭");
+//        } else if ( mod == 2 ) {
+//            System.out.println("개");
+//        }  else if ( mod == 3 ) {
+//            System.out.println("돼지");
+//        }  else if ( mod == 4 ) {
+//            System.out.println("쥐");
+//        }  else if ( mod == 5 ) {
+//            System.out.println("소");
+//        }  else if ( mod == 6 ) {
+//            System.out.println("호랑이");
+//        }  else if ( mod == 7 ) {
+//            System.out.println("토끼");
+//        }  else if ( mod == 8 ) {
+//            System.out.println("용");
+//        }  else if ( mod == 9 ) {
+//            System.out.println("뱀");
+//        }  else if ( mod == 10 ) {
+//            System.out.println("말");
+//        }  else if ( mod == 11 ) {
+//            System.out.println("양");
+//        };
+        
 
        /*
         // 평균 계산
@@ -87,28 +96,38 @@ public class Condition{
         // System.out.println("평균값을 입력하세요");
         */
 
-        /*
-        System.out.println("가위바위보 게임 입니다. ");
-        System.out.println("가위-1, 바위-2, 보-3을 입력하세요.");
-
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        int u = sc.nextInt();
-        int r = (int)(Math.random() * 3 +1);
-        System.out.println("컴퓨터가 낸 값은" + r);
-
-        if ( u == r ) {
-            System.out.println("비김");
-        } else if ( u < 1 || u > 3 ) {
-            System.out.println("1~3의 숫자를 입력하세요.");
-        // } else if( (u == 1 && r == 2) || (u == 2 && r == 3) || (u == 3 && r == 1 ) ) {
-        } else if ( u - ( r % 3 ) == 1 ) {
-            System.out.println("이김");
-        } else {
-            System.out.println("짐");
-        } 
-
-        System.out.println("");
-       */
+       //====================== 가위바위보 ========================
+    	
+//    	String[] name = {"가위", "바위", "보"}; // 배열 추가
+//    	
+//        System.out.println("가위바위보 게임 입니다. ");
+//        System.out.println("가위-1, 바위-2, 보-3을 입력하세요.");
+//
+//        java.util.Scanner sc = new java.util.Scanner(System.in);
+//        int u = sc.nextInt();
+//        
+//        // ============ 배열을 활용한 추가 ==========
+//        
+//        System.out.println("사용자가 낸 값:" + name[u-1]);
+//        
+//        // ==========================================
+//        int r = (int)(Math.random() * 3 +1);
+//        System.out.println("컴퓨터가 낸 값은: " + name[r-1]);
+//
+//        if ( u == r ) {
+//            System.out.println("비김");
+//        } else if ( u < 1 || u > 3 ) {
+//            System.out.println("1~3의 숫자를 입력하세요.");
+//        // } else if( (u == 1 && r == 2) || (u == 2 && r == 3) || (u == 3 && r == 1 ) ) {
+//        } else if ( u - ( r % 3 ) == 1 ) {
+//            System.out.println("이김");
+//        } else {
+//            System.out.println("짐");
+//        } 
+//
+//        System.out.println("");
+       
+        //=========================================================
 
         int a = 4;
 
@@ -120,19 +139,19 @@ public class Condition{
                 System.out.println("짝수");
         }
 
-        int year = 2023;
-        int mod = year % 12;
-        switch(mod) {
-        
-        case 0:
-	   System.out.println("원숭이띠");
-	   break;
-        case 1:
-	   System.out.println("닭띠");
-	   break;
-        default:
-	   System.out.println("그외의 동물");
-        }
+//        int year = 2023;
+//        int mod = year % 12;
+//        switch(mod) {
+//        
+//        case 0:
+//	   System.out.println("원숭이띠");
+//	   break;
+//        case 1:
+//	   System.out.println("닭띠");
+//	   break;
+//        default:
+//	   System.out.println("그외의 동물");
+//        }
 
         java.util.Calendar c;
         c = java.util.Calendar.getInstance(); // 현재 날짜 객체
@@ -158,6 +177,7 @@ public class Condition{
         default:
 	   System.out.println("현재" + ( month + 1 ) + "월은 하반기 입니다.");
         }
+        
         
 
     }
