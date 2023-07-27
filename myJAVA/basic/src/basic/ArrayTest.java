@@ -230,6 +230,7 @@ public class ArrayTest {
 		
 		
 		// step.1 과목 선언
+		
 		String[] subject = {"국어", "수학", "영어"};
 		int subjectLength = subject.length;
 		
@@ -279,29 +280,7 @@ public class ArrayTest {
 		// 학생들의 점수 출력하기
 		// 1번 학생점수: 국어-, 수학-, 영어-
 		// 2번 학생점수: 국어-, 수학-, 영어-
-//		int[] k;
-//		int[] m;
-//		int[] e;
-//		
-//		int avg = 0;
-//		int total = 0;
-//		
-//		for(int i = 0; i < arrTwo4.length; i++) {
-//			
-//			int colLength = arrTwo4[i].length;
-//			
-//			for(int j = 0; j < colLength; i++) {
-//				
-//				arrTwo4[no][j] = arrTwo4[i][j];
-//				
-//				System.out.println(no+"번 학생의 점수" + "국어" + arrTwo4[i][j] + "수학" + );
-//				
-//				System.out.print(Arrays.deepToString(arrTwo4));
-//				
-//			}
-//			
-//		}
-		
+
 		// 강사님
 
 		int[] totalScoreSubject = new int[3];
