@@ -10,17 +10,16 @@ public class Product {
 	
 	
 	public Product () {};
+	
 	public Product(String prodNo, String prodName) {
-//		this.prodNo = prodNo;
-//		this.prodName = prodName;
 		this(prodNo, prodName, 0);
 	}
+	
 	public Product(String prodNo, String prodName, int prodPrice) {
 		this.prodNo = prodNo;
 		this.prodName = prodName;
 		this.prodPrice = prodPrice;
 	};
-	
 	
 	
 	public void setProdNo(String prodNo) {
@@ -51,30 +50,5 @@ public class Product {
 	public int getProdPrice() {
 		return prodPrice;
 	}
-	
-
-//	public String getProdNo() {
-//		return prodNo;
-//	}
-//
-//	public void setProdNo() {
-//		this.prodNo = prodNo;
-//	}
-//
-//	public String getProdName() {
-//		return prodName;
-//	}
-//
-//	public void setProdName() {
-//		this.prodName = prodName;
-//	}
-//
-//	public int getProdPrice() {
-//		return prodPrice;
-//	}
-//
-//	public void setProdPrice() {
-//		this.prodPrice = prodPrice;
-//	}
 
 }

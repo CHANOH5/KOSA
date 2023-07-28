@@ -29,7 +29,7 @@ public class ProductUser {
 										// 여기는 this.sc.nextLine이 생략 된것
 										// 객체의 밖에서 sc를 user라는 참조 변수로 찾아가야하기 때문에 user.이 붙음
 		Product p;
-		p = dao.selectByProdNo("C0002");
+		p = dao.selectByProdNo(prodNo);
 		if(p == null) {
 			System.out.println("상품이 없습니다"); 
 		}else{

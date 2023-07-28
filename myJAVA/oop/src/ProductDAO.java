@@ -1,8 +1,6 @@
 
 public class ProductDAO {
 	
-	Product p1 = new Product();
-	
 	private Product[] products = new Product[5]; // 상품 저장소
 	
 	private int totalCnt = 0; // 저장된 상품 수
@@ -12,28 +10,7 @@ public class ProductDAO {
 	 * @param product 상품
 	 */
 	public void insert(Product product) {
-		
-		// =============== 내가 한 것 ============
-		
-////		for(int i = 1; i < products.length; i++) {
-//			
-//			p1.setProdNo();
-//			p1.setProdName();
-//			p1.setProdPrice();
-//			
-////			products[i-1] = p1;
-//			
-//			totalCnt++;
-//			
-//		}
-//		
-//		if(totalCnt == products.length) {
-//			
-//			System.out.println("저장소가 꽉 찼습니다");
-//			
-//		}
 
-		// 강사님 코드
 		if(totalCnt == products.length) {
 			
 			System.out.println("저장소가 꽉찼습니다");
@@ -54,10 +31,6 @@ public class ProductDAO {
 	 */
 	public Product selectByProdNo(String prodNo) {
 	
-//		p1.getProdNo();
-//		p1.getProdName();
-//		p1.getProdPrice();
-		
 		// 강사님 코드
 		for(int i = 0; i < totalCnt; i++) {
 			
@@ -77,23 +50,7 @@ public class ProductDAO {
 	 * @return 상품객체들, 단 저장소에 저장된 상품이 한개도 없으면 null을 반환한다.
 	 */
 	public Product[] selectAll() {
-		
-//		Product[] all = new Product[totalCnt];
-//		
-//		for(int i = 0; i < totalCnt; i++) {
-//			
-//			p1.getProdNo();
-//			p1.getProdName();
-//			p1.getProdPrice();
-//			
-//			all[i] = products[i];
-//			
-//			if(totalCnt == 0 ) {
-//				return null;
-//			}
-//			
-//		} // for
-		
+
 		// 강사님 코드
 		if( totalCnt == 0 ) {
 			return null;
