@@ -1,3 +1,4 @@
+package com.my.product.dto;
 
 public class Product {
 	

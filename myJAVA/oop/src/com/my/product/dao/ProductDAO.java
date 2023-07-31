@@ -1,3 +1,5 @@
+package com.my.product.dao;
+import com.my.product.dto.Product;
 
 public class ProductDAO {
 	

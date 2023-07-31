@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+import com.my.product.dao.ProductDAO;
+import com.my.product.dto.Product;
+
 public class ProductUser {
 	
 	Scanner sc = new Scanner(System.in);
