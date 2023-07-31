@@ -5,7 +5,7 @@ class A {
 	int i ;
 	
 	static void sm() {
-		System.out.println(this.i);
+		System.out.println(si);
 	}
 	
 	void m() {
