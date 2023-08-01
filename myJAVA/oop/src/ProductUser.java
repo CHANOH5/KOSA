@@ -1,14 +1,18 @@
 import java.util.Scanner;
 
-import com.my.product.dao.ProductDAO;
+import com.my.product.dao.ProductDAOInterface;
+import com.my.product.dao.ProductDAOList;
 import com.my.product.dto.Product;
 
 public class ProductUser {
 	
 	Scanner sc = new Scanner(System.in);
 	
-	ProductDAO dao = new ProductDAO();
+//	ProductDAOArray dao = new ProductDAOArray();
 	
+	ProductDAOInterface dao = new ProductDAOList();
+//	ProductDAOInterface dao =dao = new ProductDAOArray();
+
 	public void findAll() {
 		
 		System.out.println(">>상품 전체목록<<");
