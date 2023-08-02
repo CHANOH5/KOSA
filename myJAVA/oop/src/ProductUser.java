@@ -1,17 +1,17 @@
 import java.util.Scanner;
 
-import com.my.product.dao.ProductDAOInterface;
-import com.my.product.dao.ProductDAOList;
+import com.my.exception.AddException;
+import com.my.product.dao.ProductDAOArray;
 import com.my.product.dto.Product;
 
 public class ProductUser {
 	
 	Scanner sc = new Scanner(System.in);
 	
-//	ProductDAOArray dao = new ProductDAOArray();
+	ProductDAOArray dao = new ProductDAOArray();
 	
-	ProductDAOInterface dao = new ProductDAOList();
-//	ProductDAOInterface dao =dao = new ProductDAOArray();
+//	ProductDAOInterface dao = new ProductDAOList();
+//	ProductDAOInterface dao = new ProductDAOArray();
 
 	public void findAll() {
 		
@@ -46,7 +46,7 @@ public class ProductUser {
 		
 	}
 	
-	public void add() {
+	public void add(){
 		
 		System.out.println(">>상품 추가<<");
 //		Product p1 = new Product();
@@ -69,16 +69,18 @@ public class ProductUser {
 	
 		Product p = new Product(prodNo, prodName, Integer.parseInt(prodPrice));
 		
-		dao.insert(p);
+		try {
+			dao.insert(p);
+		} catch (AddException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
 		
-		System.out.println("prodNo : " + p.getProdNo());
-		System.out.println("prodName : " + p.getProdName());
-		System.out.println("prodPrice : " + p.getProdPrice());
 		
 	}
 	
 	
-	public static void main(String[] args) {	
+	public static void main(String[] args) throws AddException {	
 		
 		ProductUser user = new ProductUser(); // non-static 필드로 선언된 scanner를 사용하기위해 객체 먼저 생성
 		

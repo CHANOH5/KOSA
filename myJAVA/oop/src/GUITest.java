@@ -17,14 +17,19 @@ import javax.swing.JTextField;
  * 	  bt.addActionListener( new MyHandler() );
  */
 
-class MyHandler implements ActionListener {
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		System.out.println("클릭되었습니다. ㅇ_<");
-	}
-	
-} // MyHandler
+//class MyHandler implements ActionListener {
+//
+//	private JTextField t;
+//	MyHandler(JTextField t) {
+//		this.t = t;
+//	}
+//	
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		t.setText("클릭되었습니다. ㅇ_<");
+//	}
+//	
+//} // MyHandler
 
 public class GUITest {
 	
@@ -43,7 +48,16 @@ public class GUITest {
 		c.add(bt);
 		c.add(t);
 		
-		bt.addActionListener(new MyHandler());	// 이벤트 소스와 이벤트 핸들러 연결
+//		bt.addActionListener(new MyHandler());	// 이벤트 소스와 이벤트 핸들러 연결
+//		bt.addActionListener(new ActionListener() { // 익명클래스 상태로 객체 생성
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//			t.setText("클릭되었습니다. ㅇ_<");
+//			} 
+//		});
+
+		bt.addActionListener( (e) -> {t.setText("클릭되었습니다. ㅇ_<");} );
+		
 		f.setSize(300, 200);
 		f.setVisible(true);
 		
