@@ -1,5 +1,8 @@
 package com.my.product.dao;
 import com.my.exception.AddException;
+import com.my.exception.FindException;
+import com.my.exception.ModifyException;
+import com.my.exception.RemoveException;
 import com.my.product.dto.Product;
 
 public class ProductDAOArray implements ProductDAOInterface {
@@ -37,7 +40,7 @@ public class ProductDAOArray implements ProductDAOInterface {
 		
 	} // insert
 	
-	public Product selectByProdNo(String prodNo) {
+	public Product selectByProdNo(String prodNo) throws FindException {
 	
 		// 강사님 코드
 		for(int i = 0; i < totalCnt; i++) {
@@ -50,14 +53,17 @@ public class ProductDAOArray implements ProductDAOInterface {
 			
 		} // for
 		
-		return null;
+//		return null;
+		throw new FindException("상품이 없습니다.");
+		
 	} // selectByNo
 	
-	public Product[] selectAll() {
+	public Product[] selectAll() throws FindException {
 
 		// 강사님 코드
 		if( totalCnt == 0 ) {
-			return null;
+//			return null;
+			throw new FindException("상품이 한개도 없습니다.");
 		}
 		
 		Product[] all = new Product[totalCnt];
@@ -69,5 +75,29 @@ public class ProductDAOArray implements ProductDAOInterface {
 		return all;
 		
 	} // selectAll()
+
+	@Override
+	public void update(Product p) throws ModifyException {
+		
+		if ( p == null ) {
+			throw new ModifyException("변경할 상품이 없습니다.");
+		}
+		
+		for(int i=0; i<totalCnt; i++) {
+			if(products[i].getProdNo().equals(p.getProdNo())) {
+				products[i].setProdName(p);
+				products[i].setProdPrice(p);
+			} //if
+		} // for
+		
+	} // update
+
+	@Override
+	public void delete(String prodNo) throws RemoveException {
+		
+		products[totalCnt] = prodNo;
+		totalCnt--;
+		
+	}
 
 } // end class
