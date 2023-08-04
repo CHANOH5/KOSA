@@ -1,4 +1,6 @@
 package com.my.product.dao;
+import java.util.Arrays;
+
 import com.my.exception.AddException;
 import com.my.exception.FindException;
 import com.my.exception.ModifyException;
@@ -85,19 +87,40 @@ public class ProductDAOArray implements ProductDAOInterface {
 		
 		for(int i=0; i<totalCnt; i++) {
 			if(products[i].getProdNo().equals(p.getProdNo())) {
-				products[i].setProdName(p);
-				products[i].setProdPrice(p);
+				if(p.getProdName() != null) {
+					products[i].setProdName(p.getProdName());
+				}
+				if(p.getProdPrice() != 0) {
+					products[i].setProdPrice(p.getProdPrice());
+				}
 			} //if
 		} // for
 		
-	} // update
+	} // update()
 
 	@Override
 	public void delete(String prodNo) throws RemoveException {
 		
-		products[totalCnt] = prodNo;
-		totalCnt--;
+		if ( prodNo == null ) {
+			throw new RemoveException("삭제할 상품이 없습니다.");
+		}
 		
-	}
+		for(int i = 0; i < totalCnt; i++) {
+			if (products[i].getProdNo().equals(prodNo)) {
+				for(int j = i; j < totalCnt-1; j++) {
+					products[j] = products[j+1];
+				}
+				products[totalCnt-1] = null;
+				totalCnt--;
+			} else if(totalCnt == 0) {
+				System.out.println("삭제할 상품이 없습니다.");
+			} //if-else
+		} // for
+		
+//		Product[] temp = products[i];
+//		products[i] = products[i+1];
+//		products[i+1] = temp;
+		
+	} // delete()
 
 } // end class

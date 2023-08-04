@@ -3,6 +3,7 @@ import java.util.Scanner;
 import com.my.exception.AddException;
 import com.my.exception.FindException;
 import com.my.exception.ModifyException;
+import com.my.exception.RemoveException;
 import com.my.product.dao.ProductDAOArray;
 import com.my.product.dto.Product;
 
@@ -102,22 +103,22 @@ public class ProductUser {
 		
 	}
 	
-	public void delete() {
+	public void delete() throws RemoveException {
 		
 		System.out.println("삭제할 상품의 상품번호를 입력하세요.");
 		String prodNo = sc.nextLine();
 	
-		dao.delete();
+		dao.delete(prodNo);
 	}
 	
 	
-	public static void main(String[] args) throws AddException, FindException, ModifyException {	
+	public static void main(String[] args) throws AddException, FindException, ModifyException, RemoveException {	
 		
 		ProductUser user = new ProductUser(); // non-static 필드로 선언된 scanner를 사용하기위해 객체 먼저 생성
 		
 		while(true) {
 		
-			System.out.println("작업을 선택하세요 : 상품전체목록-1, 상품번호로검색-2, 상품추가-3, 상품수정-4 종료-9");
+			System.out.println("작업을 선택하세요 : 상품전체목록-1, 상품번호로검색-2, 상품추가-3, 상품수정-4, 상품삭제-5 종료-9");
 			String opt = user.sc.nextLine(); 
 			
 			if(opt.equals("1")) {
@@ -128,6 +129,8 @@ public class ProductUser {
 				user.add();
 			} else if(opt.equals("4")) {
 				user.update();
+			} else if(opt.equals("5")) {
+				user.delete();
 			} else if(opt.equals("9")) {
 				break;
 			} // if-else
