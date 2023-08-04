@@ -1,35 +1,90 @@
+import java.io.IOException;
+import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 
 import com.my.exception.AddException;
 import com.my.exception.FindException;
 import com.my.exception.ModifyException;
 import com.my.exception.RemoveException;
-import com.my.product.dao.ProductDAOArray;
+import com.my.product.dao.ProductDAOInterface;
 import com.my.product.dto.Product;
 
 public class ProductUser {
 	
 	Scanner sc = new Scanner(System.in);
 	
-	ProductDAOArray dao = new ProductDAOArray();
+//	ProductDAOArray dao = new ProductDAOArray();
 	
 //	ProductDAOInterface dao = new ProductDAOList();
 //	ProductDAOInterface dao = new ProductDAOArray();
-
-	public void findAll() throws FindException {
+	ProductDAOInterface dao;
+	ProductUser(){
+//		dao = new ProductDAOArray();
+		// 유저가 dao를 어떤것을 쓸지 정하도록 하지 않고
+		// properties파일을 가져와서 properties파일에 저장된 dao를 쓰도록 할것임!
 		
-		System.out.println(">>상품 전체목록<<");
-		Product[] all1 = dao.selectAll();
-		if(all1 == null) {
-			System.out.println("상품이 없습니다"); //출력됨
-		}else {
-			for(Product p: all1) {
-				System.out.println(p.getProdNo() + ":" + p.getProdName() + ":" + p.getProdPrice());
-			}
+		Properties env = new Properties();
+		
+		try {
+			// productUser.class 파일이 있는 곳에서 my.properties를 찾아서 읽어와라!
+			env.load(ProductUser.class.getResourceAsStream("my.properties"));
+			// product.dao라는 key를 가져와라 
+			String className = env.getProperty("product.dao"); 
+			// 객체 생성
+			Class clazz = Class.forName(className);
+//			clazz.newInstance();
+			Object obj = clazz.getDeclaredConstructor().newInstance();
+			
+			dao = (ProductDAOInterface)obj;
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		System.out.println("----------------");
+		
 		
 	}
+
+	void findAll() {
+		System.out.println(">>상품 전체목록<<");
+		try {
+			//Product[] all1 = dao.selectAll();
+			Object obj = dao.selectAll();
+			if(obj instanceof Product[]) {
+				Product[] all1 = (Product[])obj;				
+				for(int i = 0; i< all1.length; i++){
+					Product p = all1[i];
+					//System.out.println(p.prodNo + ":" + p.prodName + ":" + p.prodPrice);
+					System.out.println(p.getProdNo() + ":" + p.getProdName() + ":" + p.getProdPrice());
+				}
+			}else if(obj instanceof List) {
+				List<Product> list = (List)obj;
+				for(int i=0; i<list.size(); i++) {
+					Product p = list.get(i);
+					System.out.println(p.getProdNo() + ":" + p.getProdName() + ":" + p.getProdPrice());
+				}
+			}
+
+		}catch(FindException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println("----------------");
+	}
+		
+//		if(all1 == null) {
+//			System.out.println("상품이 없습니다"); //출력됨
+//		}else {
+//			for(Product p: all1) {
+//				System.out.println(p.getProdNo() + ":" + p.getProdName() + ":" + p.getProdPrice());
+//			}
+//		}
+//		System.out.println("----------------");
+		
+//	}
 	
 	public void findByProdNo() throws FindException {
 

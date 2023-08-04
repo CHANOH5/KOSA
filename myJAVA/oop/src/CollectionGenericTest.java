@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
+
+import com.my.product.dto.Product;
 
 public class CollectionGenericTest {
 
@@ -13,6 +14,8 @@ public class CollectionGenericTest {
 		c.add(Float.valueOf(3.0F));
 		c.add("one");
 		c.add(Boolean.valueOf(false));
+		c.add(new Product("C0001", "아메리카노", 1000));
+		c.add(new Product("C0001", "gg", 1000));		
 		
 		System.out.println("c 요소 갯수 : " + c.size());
 		System.out.println("c : " + c ); // c.toString() 자동 호출
@@ -32,6 +35,8 @@ public class CollectionGenericTest {
 		}
 		
 	} // test()
+	
+	
 	
 	public static void main(String[] args) {
 		

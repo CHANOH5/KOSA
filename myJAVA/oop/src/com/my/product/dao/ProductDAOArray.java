@@ -60,7 +60,7 @@ public class ProductDAOArray implements ProductDAOInterface {
 		
 	} // selectByNo
 	
-	public Product[] selectAll() throws FindException {
+	public Object selectAll() throws FindException {
 
 		// 강사님 코드
 		if( totalCnt == 0 ) {
