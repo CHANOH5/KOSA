@@ -2,6 +2,12 @@ package com.my.product.dto;
 
 import java.util.Objects;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+
+@Data
+@AllArgsConstructor
 public class Product {
 	
  	private String prodNo;		// 상품 번호
@@ -12,22 +18,22 @@ public class Product {
 	
 	
 	
-	public Product(){}
-	public Product(String prodNo, String prodName){
-//		this.prodNo = prodNo;
-//		this.prodName = prodName;		
-		this(prodNo, prodName, 0);
-	}
-	public Product(String prodNo, String prodName, int prodPrice){
-		if(prodNo.length() != 5) {
-			System.out.println("상품번호는 5자리이어야합니다");
-			
-		}else {
-			this.prodNo = prodNo;
-			this.prodName = prodName;
-			this.prodPrice = prodPrice;
-		}
-	}
+//	public Product(){}
+//	public Product(String prodNo, String prodName){
+////		this.prodNo = prodNo;
+////		this.prodName = prodName;		
+//		this(prodNo, prodName, 0);
+//	}
+//	public Product(String prodNo, String prodName, int prodPrice){
+//		if(prodNo.length() != 5) {
+//			System.out.println("상품번호는 5자리이어야합니다");
+//			
+//		}else {
+//			this.prodNo = prodNo;
+//			this.prodName = prodName;
+//			this.prodPrice = prodPrice;
+//		}
+//	}
 	
 //	public boolean equals(Product p) {
 //		return this.prodNo.equals(p.prodNo);
@@ -50,10 +56,10 @@ public class Product {
 //		}
 //		return false;
 //	}
-	
-	public void setProdNo(String prodNo, String prodName, int pordPrice) {
-		this.prodNo = prodNo;			
-	}
+//	
+//	public void setProdNo(String prodNo, String prodName, int pordPrice) {
+//		this.prodNo = prodNo;			
+//	}
 	
 	@Override
 	public int hashCode() {
@@ -76,25 +82,25 @@ public class Product {
 		Product other = (Product) obj;
 		return Objects.equals(prodNo, other.prodNo);
 	}
-
-	public String getProdNo() {
-		return prodNo;
-	}
-	
-	public void setProdName(String prodName) {
-		this.prodName = prodName;
-	}
-	
-	public String getProdName() {
-		return prodName;
-	}
-	
-	public void setProdPrice(int prodPrice) {
-		this.prodPrice = prodPrice;
-	}
-
-	public int getProdPrice() {
-		return prodPrice;
-	}
+//
+//	public String getProdNo() {
+//		return prodNo;
+//	}
+//	
+//	public void setProdName(String prodName) {
+//		this.prodName = prodName;
+//	}
+//	
+//	public String getProdName() {
+//		return prodName;
+//	}
+//	
+//	public void setProdPrice(int prodPrice) {
+//		this.prodPrice = prodPrice;
+//	}
+//
+//	public int getProdPrice() {
+//		return prodPrice;
+//	}
 
 }
