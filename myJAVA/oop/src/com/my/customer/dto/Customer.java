@@ -1,10 +1,12 @@
 package com.my.customer.dto;
 
-public class Customer extends Person{
+import java.io.Serializable;
+
+public class Customer extends Person {
 	
 	//필드
 	private String id;
-	private String pwd;
+	transient private String pwd;
 	
 	// 생성자
 	public Customer() {
