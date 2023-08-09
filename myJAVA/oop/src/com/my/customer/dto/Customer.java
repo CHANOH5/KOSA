@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 public class Customer extends Person {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	//필드
 	private String id;
 	transient private String pwd;

@@ -14,7 +14,7 @@ public class Product {
 	
 	private String prodName;	// 상품 이름
 	
-	private int prodPrice;		// 상품 가격
+	private Integer prodPrice;		// 상품 가격
 	
 	
 	

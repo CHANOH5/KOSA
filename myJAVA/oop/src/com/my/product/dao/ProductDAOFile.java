@@ -3,8 +3,10 @@ package com.my.product.dao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -48,14 +50,33 @@ public class ProductDAOFile implements ProductDAOInterface {
 	@Override
 	public void insert(Product product) throws AddException {
 
-//		Scanner sc = new Scanner(System.in);
-//		
-//		System.out.println("저장할 파일경로와 파일명을 입력하세요. ex) D:\\products.txt");
-//		String fileName = sc.nextLine();
-//
-//	    String contents =
-//	            product.getProdNo() + ":" + product.getProdName() + ":" + product.getProdPrice();
-//
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("저장할 파일경로와 파일명을 입력하세요. ex) D:\\products.txt");
+		String fileName = sc.nextLine();
+
+	    String contents =
+	            product.getProdNo() + ":" + product.getProdName() + ":" + product.getProdPrice();
+
+	    ObjectOutputStream oos = null;
+	    
+	    try {
+	    	
+			oos = new ObjectOutputStream(new FileOutputStream(fileName));
+			oos.writeObject(contents);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if(oos != null) {
+				try {
+					oos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} // try-catch
+			} // if 
+		} // try-catch-finally
+	    
 //	    FileWriter fileWriter = null;
 //	    BufferedWriter bufferedWriter = null;
 //
@@ -91,32 +112,32 @@ public class ProductDAOFile implements ProductDAOInterface {
 		
 		// ================ 교수님 ===================
 		
-		try {
-			selectByProdNo(product.getProdNo());
-			throw new AddException("이미 존재하는 상품임 =ㅅ=");
-		} catch (FindException e) {
-//			e.printStackTrace();
-			
-			FileWriter fw = null;
-			try {
-				
-				fw = new FileWriter(fileName, true);
-				String prodStr = product.getProdNo() + ":" + product.getProdName()+":"+ product.getProdPrice() + "\n";
-				
-				fw.write(prodStr);
-				
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} finally {
-				if(fw != null) {
-					try {
-						fw.close();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-				}
-			}
-		} //try-catch
+//		try {
+//			selectByProdNo(product.getProdNo());
+//			throw new AddException("이미 존재하는 상품임 =ㅅ=");
+//		} catch (FindException e) {
+////			e.printStackTrace();
+//			
+//			FileWriter fw = null;
+//			try {
+//				
+//				fw = new FileWriter(fileName, true);
+//				String prodStr = product.getProdNo() + ":" + product.getProdName()+":"+ product.getProdPrice() + "\n";
+//				
+//				fw.write(prodStr);
+//				
+//			} catch (IOException e1) {
+//				e1.printStackTrace();
+//			} finally {
+//				if(fw != null) {
+//					try {
+//						fw.close();
+//					} catch (IOException e1) {
+//						e1.printStackTrace();
+//					}
+//				}
+//			}
+//		} //try-catch
 		
 		
 	} // insert
