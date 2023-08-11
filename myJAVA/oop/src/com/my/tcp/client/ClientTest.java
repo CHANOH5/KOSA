@@ -18,7 +18,8 @@ public class ClientTest {
 		Socket s = null;
 		String serverIp = "127.0.0.1"; // 인터넷이 연결되지 않아도 사용할 수 있는 IP , localHost
 //		String serverIp = "192.168.1.21"; // 셍나 IP: 192.168.1.21
-
+//		String serverIp = "192.168.1.84";
+		
 		int serverPort = 5432;
 		
 		OutputStream oos = null;
