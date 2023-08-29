@@ -6,7 +6,7 @@
         </title>
     </head>
     <body>
-        <h1 style="color:red"> 씨익~! :) </h1>
+        <h1 style="color:red" id="top"> 씨익~! :) </h1>
         <h3 style="color : green; background-color:yellow;width:100px;height:100px;">찬돌's First HTML 입니다 = 3=/</h3>
         <p>단락1 : <br> 셍나</p>
         <p>단락2 : <br> :p </p>
@@ -66,6 +66,23 @@
             <li>셍나 :p </li>
             <li>셍나 :> </li>
         </ol>
+
+        <!-- 웹 접근성을 높여라 ! -->
+        <!-- 확대해도 이미지가 깨지지 않게 -> 동적 -->
+        <!-- alt로 이미지에대한(외부리소스) 설명! -->
+        <!-- 외부리소스 부르는 태그 -> img, a 태그 -->
+        <img src="../images/externalFile.jpg" alt="starving" width="300">
+
+        <hr>
+        <!-- 앵커태그, 어느곳으로 이동해라 -->
+        <a href="http://www.google.com">구글</a>
+        <!-- HyperText라고 하는 것의 대표 태그 -->
+        <a href="./other.html">다른문서로 이동</a>
+
+        <!-- id속성값이 top인 위치로 이동 -->
+        <a href="#top">처음위치로</a>
+
+
 
     </body>
 </html>
