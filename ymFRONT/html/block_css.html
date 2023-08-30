@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>블럭요소/인라인요소</title>
+        <!-- 중복되는 태그들을 관리 -->
+        <style>
+            /* div태그와 span태그, input태그의 속성은 이렇게 하겠다! */
+            div, span, input{
+                width: 300px;
+                height: 300px;
+                border: 1px solid;
+                margin: 20px;
+            }
+        </style>
+
+        <!-- 외부 css 불러오기 -->
+        <link rel="stylesheet" href="../css/block_css.css">
+
+    </head>
+    <body>
+        블럭요소 : line하나를 모두 사용하는 요소(div, h1~h6, p, table, ul, li, ol 태그들)
+                  상하margin이 유지된다, 가로/세로 크기를 지정할 수 있음
+        인라인요소 : line하나를 모두 사용하지 못하는 요소(줄바꿈이 안되는 요소.. span)
+                    상하margin이 유지되지 않는다, 가로/세로 자동설정(요소 body(태그가 열려서 닫힐때 까지)의 크기에 따라),
+        인라인블럭요소 : 인라인(line하나를 모두 사용하지 못하는 요소) + 블럭(가로/세로 크기 지정가능)
+                        (input, select, img, a)
+        <hr>
+
+        <div style="text-align: right;">DIV1</div>
+        <div style="line-height: 300px;">DIV2</div>
+        <span>SPAN1</span>
+        <span>SPAN2</span>
+
+        <input >
+        <input >
+
+        <div style="display: inline; width: 100px; height: 300px; border: 1px solid;">DIV3</div>
+        <span style="display: block; width: 100px; height: 300px; border: 1px solid;">SPAN3</span>
+
+        <span style="display: inline-block; width: 100px; height: 300px; border: 1px solid;">SPAN4</span>
+        <span style="display: inline-block; width: 100px; height: 300px; border: 1px solid;">SPAN5</span>
+
+
+        <!-- ul과 li는 블럭요소로써 자동 줄바꿈이 된다 -> 줄바꿈 없이 한줄로 나타나기를 원한다면 li요소를 inline 요소로 변경-->
+        <ul style="padding-left: 0px;">
+            <li style="display: inline-block;"><a href="#">메뉴1</a></li>
+            <li style="display: inline-block;"><a href="#">메뉴2</a></li>
+            <li style="display: inline-block;"><a href="#">메뉴3</a></li>
+        </ul>
+
+    </body>
+</html>

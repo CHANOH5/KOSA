@@ -7,7 +7,7 @@
     <body>
         <!-- form태그 -> 갑입력, submit 가능 -->
         <!-- ⭐ form태그의 action 설정이 submit버튼을 눌렀을때 서버를 정하고 데이터를 전송하는 속성 -->
-        <form method="post" action="http://www.naver.com">
+        <form method="post" action="http://localhost:8888/back/form">
             <!-- required 반드시 입력되어야 할 항목으로 만드는 속성 -->
             <label> TEXT : <input type="text" placeholder="아이디를 입력하세요" maxlength="5" name="t" required></label>
             <br>
@@ -57,6 +57,12 @@
             <input type="submit" value="전송버튼">
             <input type="reset" value="리셋버튼">
 
+            <!-- button에 타입으로 input태그와 동일한 역할을 함 -->
+            <!-- form태그 내부의 button의 default type은 submit이다 -->
+            <!-- form태그 외부의 button은 default type이 일반 버튼이다. -->
+            <button type="button">일반버튼</button>
+            <button>전송버튼</button>
+            <button type="reset">리셋버튼</button>
         </form>
     </body>
 </html> 
