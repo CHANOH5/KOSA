@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+
+        <style>
+            div.relative{
+                background-color: gray;
+                border: 1px solid;
+                position: relative;
+                left: 50px;
+                top: 100px;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div>ㅎㅎ</div>
+        <div class="relative">
+            DIV1
+        </div>
+        <div style="background-color: gray; width: 500px; height: 200px; overflow-y: scroll;">
+            <!-- relative는 (이전요소 기준)상대적 위치 -->
+            <div style="position: relative; left: 50px;            background-color: red; width: 100px; height: 100px; z-index: 10;">red</div>
+            <!-- absolute는 절대위치  -->
+            <div style="position: absolute; top:150px;             background-color: green; width: 100px; height: 100px;">green</div>
+            <div style="position: relative; left: 80px; top: 10px; background-color: blue; width: 100px; height: 100px;">blue</div>
+        </div>
+
+        <!-- 부모가 relative인경우!! 자식이 absolute면 부모기준으로 절대위치이다 -->
+        <div style="position: relative; top: 50px; background-color: gray; width: 500px; height: 500px;">
+            <div style="position: relative; left: 80px; background-color: red; width: 100px; height: 100px;"></div>
+            <div style="position: absolute; top:150px; background-color: green; width: 100px; height: 100px;">green</div>
+        </div>
+        
+    </body>
+</html>

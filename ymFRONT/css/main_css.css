@@ -1,0 +1,50 @@
+/* 공통속성 */
+body{
+    width: 100%;
+}
+a{
+    text-decoration-line: none;
+}
+img{
+    float: left;
+}
+
+/* header */
+nav{
+    width: 80%;
+    display: inline-block;
+    text-align: center;
+    left: 1000px;
+}
+#nav_ul{
+    width: 80%;
+    display: inline-block;
+    list-style-type: none; /* ul태그 점 삭제 */
+    margin-left: 200px;
+}
+#nav_ul>li {
+    float: left;
+    margin: 10px;
+    margin-left: 25px;
+}
+nav>ul>li>a:hover{ /* hover */
+    background-color:coral;
+    color: white;
+    text-decoration: underline; /* 마우스 올라갔을 때 밑줄 */
+}
+
+/* main */
+section{
+    height: 700px;
+    background-color:wheat;
+    margin-top: 10px;
+}
+
+/* footer */
+#footer{
+    height: 50px;
+    text-align: center;
+    background-color: gainsboro;
+    margin-top: 10px;
+    padding: 20px;
+}

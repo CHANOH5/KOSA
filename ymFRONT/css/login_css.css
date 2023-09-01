@@ -1,0 +1,35 @@
+form {
+    border: 2px solid;
+    width: 300px;
+    padding: 15px;
+    background-color:beige;
+    
+}
+table{
+    text-align: right;
+    padding: 5px;
+}
+tr>td{
+    text-align: right;
+}
+table>tr>input{
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid;
+}
+#id{
+    margin-left: 15px;
+}
+#login_save>input{
+    float: left;
+    margin-left: 15px;
+    text-align: center;
+}
+#login_save>div{
+    float: left;
+    margin-left: 12px;
+}
+#login_bt {
+    position: relative;
+    margin-left: 200px;
+}
