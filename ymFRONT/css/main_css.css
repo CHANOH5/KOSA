@@ -11,21 +11,21 @@ img{
 
 /* header */
 nav{
-    width: 80%;
-    display: inline-block;
+    width: 100%;
+    display: inline;
     text-align: center;
-    left: 1000px;
+    left: 100px;
 }
 #nav_ul{
-    width: 80%;
+    width: 50%;
     display: inline-block;
     list-style-type: none; /* ul태그 점 삭제 */
-    margin-left: 200px;
+    margin-left: 380px;
 }
 #nav_ul>li {
     float: left;
     margin: 10px;
-    margin-left: 25px;
+    margin-left: 80px;
 }
 nav>ul>li>a:hover{ /* hover */
     background-color:coral;

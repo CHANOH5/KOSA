@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script>
+        for( var i = 1; i <= 10; i++ ) {
+            console.log(i);
+        }
+
+        var i = 1;
+        while( i <= 10 ) {
+            console.log(i);
+            i++;
+        }
+
+        var i = 100;
+        // while( i <= 10 ) {
+        //     console.log(i);
+        //     i++;
+        // }
+        // do블럭에서 먼저 처리를하고 while문으로 가기 때문에
+        // 한번 수행이 된다!!!
+        do{ 
+            console.log(i);
+            i++
+        }while( i < 10)
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

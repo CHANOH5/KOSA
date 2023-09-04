@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        // 이름있는 함수 : 재사용성 높다
+        function fa(param1, param2) {
+            // 자스에서는 return타입이나 매개변수의 타입을 결정하지 않는다
+            // 자바에서는 모두 결정해주어야 했음
+            return param1 + param2
+        }
+
+        var result = fa(5, 7)
+        console.log(result) // 12
+
+        console.log(fa(5)); // NaN -> 매개변수를 차례로 채우는데 인자의 갯수가 부족함
+        console.log(fa(5, 3, 1)); // 인자가 초과하면 전달될 매개변수가 없으므로 무시한다
+
+        function fb() { // 반환값이 없는 함수
+
+        }
+        result = fb()
+        console.log(result); // undefined 반환값이 없는 함수를 매개변수로 대입하려고 할 때
+
+
+        // 이름없는 함수 : 재사용성 낮다
+
+        var f1 = function(param1, param2) {
+            return param1 + param2
+        }
+
+        console.log(f1(5, 7));
+
+        var f2 = function(param1, param2, param3) {
+
+            window.setTimeout( function(){ // setTimeout 함수 ? 5000밀리세컨드(5초) 후에 수행
+                console.log(param1(param2, param3));
+            } , 5*1000)
+
+            console.log(param1(param2, param3)); // 12
+        }
+        f2(f1, 5, 7);
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

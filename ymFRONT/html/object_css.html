@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <script>
+        let product = {
+            prodNo : 'C0001',
+            prodName : '아메리카노',
+            prodPrice : 1000,
+
+            // 객체의 기능 -> 메서드
+            toString : function() { // 객체의 메서드용 함수를 만들 때 -> this.을 써야함
+                return this.prodNo + ":" + this.prodName + ":" + this.prodPrice
+            }
+        }
+        product.prodPrice += 500
+        console.log(product.toString());
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
