@@ -102,6 +102,7 @@
             const selectObj2 = document.querySelector("div.select > select.category2")
 
             // ------------ select 객체에서 체인지 이벤트가 발생했을 때 할 일 START ------------
+            /*
             selectObj.addEventListener('change', function(){
                 
                 console.log('change', selectObj.value) // 선택된 옵션값이 value가 됨!
@@ -130,6 +131,64 @@
                 } // switch
 
             }); // selectObj.addEventListener()
+            */
+
+            // ============= node로 해해보기 ==============
+
+            selectObj.addEventListener('change', () => {
+
+                selectObj2.replaceChildren(); // 다른 select를 선택했을 때 이전에 눌러서 생겼던 select값들이 사라짐
+                
+                let option, text
+                switch(selectObj.value) {
+                    case 'sedan' :
+                        option = document.createElement('option')
+                        text = document.createTextNode('뉴아반테')
+                        option.appendChild(text);
+                        selectObj2.appendChild(option)
+
+                        option = document.createElement('option')
+                        text = document.createTextNode('그랜져')
+                        option.appendChild(text);
+                        selectObj2.appendChild(option)
+
+                        selectObj2.style.display = 'inline-block'
+                        break;
+
+                    case 'suv' :
+                    option = document.createElement('option')
+                        text = document.createTextNode('산타페')
+                        option.appendChild(text);
+                        selectObj2.appendChild(option)
+                        
+                        option = document.createElement('option')
+                        text = document.createTextNode('투산')
+                        option.appendChild(text);
+                        selectObj2.appendChild(option)
+
+                        option = document.createElement('option')
+                        text = document.createTextNode('펠리세이드')
+                        option.appendChild(text);
+                        selectObj2.appendChild(option)
+
+                        selectObj2.style.display = 'inline-block'
+                        break;
+
+                    case 'truck' :
+                    option = document.createElement('option')
+                        text = document.createTextNode('마이티')
+                        option.appendChild(text);
+                        selectObj2.appendChild(option)
+
+                        selectObj2.style.display = 'inline-block'
+                        break;
+
+                    default :
+                        selectObj2.style.display = 'none'
+                        break;
+                }
+
+            })
             // ------------ select 객체에서 체인지 이벤트가 발생했을 때 할 일 END ------------
 
 // ------------------------------------------------------------------------------------------

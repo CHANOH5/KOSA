@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>window_popup_js.html</title>
+
+        <style>
+            div.list>div:hover{
+                background-color: darkorange;
+            }
+        </style>
+        <script>
+            window.addEventListener('load', () => {
+                const divArr = document.querySelectorAll('div.list > div')
+
+                // divObj 부분이 value
+                divArr.forEach( (divObj, index)=>{
+
+                    // ----- div.list>div객체 클릭되었을 때 할 일 START -----
+                    divObj.addEventListener('click', (e) => {
+                        
+                        const divObj1 = e.target.parentNode  // div객체를 찾음! divObj == divObj1
+                        const zipcodeObj = divObj1.firstChild
+                        const doroObj = divObj1.lastChild
+                        console.log(zipcodeObj);
+                        console.log(doroObj);
+                        // 현재창 닫기
+                        // const mainWindow = self.opener // 부모창 (찾아내기)
+                        // // 부모창의 result라는 영역에 값을 채우기
+                        // // const resultObj = mainWindow.document.querySelector('div.result')
+                        // const resultObj = mainWindow.document.querySelector('div.result')
+                        // resultObj.innerHTML = zipcodeObj.innerHTML + ':' + doroObj.innerHTML
+                        
+                        // self.close();
+
+                    }) // divObj.addEventListener
+                    // ----- div.list>div객체 클릭되었을 때 할 일 END -----
+
+                }) // divArr.forEach
+
+            }) // window.addEventListener
+        </script>
+
+        
+    </head>
+    <body>
+
+        <h1>우편번호검색(도로명주소검색)</h1>
+        <input type="text" placeholder="도로명주소를 입력하세요">
+        <button>우편번호검색</button>
+
+        <div class="list">
+            <div>
+                <span class="zipcode">25347</span>
+                <span class="doro">강원도특별자치도 평창군 셍나면 셍나로 6-5</span>
+            </div>
+            <div>
+                <span class="zipcode">25347</span>
+                <span class="doro">강원도특별자치도 평창군 셍나면 셍나로 30</span>
+            </div>
+            <div>
+                <span class="zipcode">25347</span>
+                <span class="doro">강원도특별자치도 평창군 셍나면 셍나로 31</span>
+            </div>
+        </div>
+
+    </body>
+</html>
