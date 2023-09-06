@@ -5,6 +5,80 @@
         <title>Koreabucks Korea</title>
 
         <link rel="stylesheet" href="../css/main_css.css">
+
+        <script>
+
+            function ajaxHandler(method, url, target) {
+            console.log(url)
+            const xhttp = new XMLHttpRequest()
+            xhttp.addEventListener('readystatechange', function () {
+                // alert(this.readyState + ":" + this.status)
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        target.innerHTML = this.responseText
+                    } else if (this.status == 404) {
+                        alert('자원이 없습니다')
+                    } else if (this.status == 500) {
+                        alert('서버실행시 오류가 발생했습니다')
+                    } else {
+                        alert(this.responseText)
+                    }
+                }
+            })
+            xhttp.open(method, url)
+            xhttp.send()
+        }
+
+            window.addEventListener('load', ()=>{
+                // DOM트리에서 section객체 찾기
+                const sectionObj = document.querySelector('section')
+
+                const menus = document.querySelectorAll('nav>ul>li>a')
+
+                menus.forEach((menu, index)=>{
+                    // ----- 메뉴객체에서 클릭이벤트 발생할 때 할 일 START -----
+                    menu.addEventListener('click', (e)=>{
+                        // alert('메뉴클릭됨')
+                        // console.log(e.target.class);
+                        // 화살표함수 내에서 this는 window객체 이므로 사용x
+                        switch(e.target.className) {
+                            case 'login':
+                                //location.href = "http://www.naver.com"
+                                // const xhttp = new XMLHttpRequest(); // 객체 생성
+                                // xhttp.addEventListener('load', function(){
+                                //     // 응답되었을 때 응답 내용을 section영역에 보여줌 -> section객체를 찾아놓자 미리
+                                //     sectionObj.innerHTML = this.responseText
+                                // })
+                                ajaxHandler('GET', "./login.html", sectionObj)
+
+                                break;
+                            case 'signup':
+
+                                ajaxHandler('GET', "./signup.html", sectionObj)
+
+                                break;
+                            case 'logout':
+                                break;
+                            case 'productlist':
+
+                                ajaxHandler('GET', "./productlist.html", sectionObj)
+
+                                break;
+                            case 'cartlist':
+                                break;
+                            case 'orderlist':
+                                break;
+                            default :
+                                break;
+                        }
+                        e.preventDefault();
+                    }) // menu.addEventListener
+                    // ----- 메뉴객체에서 클릭이벤트 발생할 때 할 일 END -----
+                }) // menus.forEach
+
+            }) // window.addEventListener
+        </script>
+
     </head>
     <body>
         <header>
@@ -12,12 +86,12 @@
         </header>
         <nav id="nav"> <!-- 메뉴들 -->
             <ul id="nav_ul">
-                <li><a href="./login.html">로그인</a></li>
-                <li><a href="./signup.html">가입</a></li>
-                <li><a href="#">로그아웃</a></li>
-                <li><a href="./productlist.html">상품목록</a></li>
-                <li><a href="#">장바구니목록</a></li>
-                <li><a href="#">주문목록</a></li>
+                <li><a href="#" class="login">로그인</a></li>
+                <li><a href="#" class="signup">가입</a></li>
+                <li><a href="#" class="logout">로그아웃</a></li>
+                <li><a href="#" class="productlist">상품목록</a></li>
+                <li><a href="#" class="cartlist">장바구니목록</a></li>
+                <li><a href="#" class="orderlist">주문목록</a></li>
             </ul>
         </nav>
         <section> <!-- 메뉴에 해당하는 데이터들 -->

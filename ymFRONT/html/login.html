@@ -1,33 +1,71 @@
-<!DOCTYPE html>
-<html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <title>Document</title>
-        <link rel="stylesheet" href="../css/login_css.css">
-    </head>
-    <body>
-        <header></header>
+<link rel="stylesheet" href="../css/login_css.css">
 
-        <section>
-            <form method="POST" action="http://localhost:8888/back/login">
-                <table>
-                    <tr>
-                        <td>아이디 : </td>
-                        <td><input type="text" placeholder="아이디 입력" id="id" name="id"></td>
-                    </tr>
-                    <tr>
-                        <td>비밀번호 : </td>
-                        <td><input type="text" placeholder="비밀번호 입력" name="pwd"></td>
-                    </tr>
-                </table>
-                <div id="login_save">
-                    <input type="checkbox"> 
-                    <div>아이디저장</div>
-                </div>  
-                <div id="login_bt"><input type="submit" value="로그인"></div>
-            </form>
-        </section>
+<script>
+    window.addEventListener('load', ()=>{
+        const savedId = localStorage.getItem('savedId')
+        // console.log(savedId)//null
+        if(savedId != null){
+            document.querySelector('input[name=id]').value = savedId
+        }
+        //DOM트리에서 form객체찾기
+        //----form객체에서 submit이벤트가 발생했을 때 할 일 START----
+        document.querySelector('form').addEventListener('submit', (e)=>{
+            
+            console.log("ajax-0")
+            //checkbox객체의 checked속성값확인
+            if(document.querySelector('input[type=checkbox]').checked){ //.checked == true
+                localStorage.setItem('savedId', document.querySelector('input[name=id]').value)
+            }else{
+                localStorage.removeItem('savedId')
+            }
+            console.log("ajax-1")
+            const xhttp = new XMLHttpRequest()
+            xhttp.addEventListener('readystatechange', function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        alert(this.responseText)
+                    }else{
+                        alert(this.status + ":" + this.responseText)
+                    }
+                }
+            })
+            console.log("ajax-2")
+            xhttp.open('post', 'http://localhost:8888/back/login')
+            console.log("ajax-3")
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+            console.log("ajax-4")
+            // xhttp.send('id=aaa&pwd=bbb')
+            // 고정된 값 말고 사용자가 입력한 값으로 받기
+            const idValue = document.querySelector('input[name=id]').value
+            const pwdValue = document.querySelector('input[name=pwd]').value
 
-        <footer></footer>
-    </body>
-</html>
+            // const data = 'id=' + idValue + '&pwd=' + pwd 어지러우니까 백틱 연산자 사용하자 
+            const data = `id=${idValue}&pwd=${pwdValue}`
+            console.log(data);
+
+            // 이 데이터가 올바르다면 send 인자값으로 사용
+            xhttp.send(data)
+
+            e.preventDefault()
+        })
+        //----form객체에서 submit이벤트가 발생했을 때 할 일 END----
+    })
+</script>
+
+<form>
+    <table>
+        <tr>
+            <td>아이디 : </td>
+            <td><input type="text" placeholder="아이디 입력" id="id" name="id"></td>
+        </tr>
+        <tr>
+            <td>비밀번호 : </td>
+            <td><input type="password" placeholder="비밀번호 입력" name="pwd"></td>
+        </tr>
+    </table>
+    <div id="login_save">
+        <input type="checkbox">
+        <div>아이디저장</div>
+    </div>
+    <div id="login_bt"><input type="submit" value="로그인"></div> <!-- form태그 내의 button은 submit과 같음 -->
+</form>
