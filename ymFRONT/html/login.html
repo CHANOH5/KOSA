@@ -5,31 +5,32 @@
     alert('in login start')
 
     $(() =>{
-        const $savedId = $('savedId')
+        const savedId = $('savedId')
 
-        if($savedId != null){
-            $('input[name=id]').val() = $savedId
+        if(savedId != null){
+            // $('input[name=id]').val() = $savedId
+            $('input[name=id]').val(savedId)
         }
 
-        $('form').submit(function(e){
+        $('form').submit((e)=>{
  
-            console.log("ajax-0")
+            alert("ajax-0")
 
             if($('input[type=checkbox]').prop('checked')){
                 localStorage.setItem('savedId', $('input[name=id]').val())
             }else{
                 localStorage.removeItem('savedId')
             }
-            console.log("ajax-1")
-            const $idValue = $('input[name=id]').val()
-            console.log("ajax-2")
-            const $pwdValue = $('input[name=pwd]').val()
+            alert("ajax-1")
+            const idValue = $('input[name=id]').val()
+            alert("ajax-2")
+            const pwdValue = $('input[name=pwd]').val()
 
-            console.log("ajax-3")
-            const data = `id=${$idValue}&pwd=${$pwdValue}`
-            console.log(data);
+            alert("ajax-3")
+            const data = `id=${idValue}&pwd=${pwdValue}`
+            alert(data);
 
-            console.log("ajax-4")
+            alert("ajax-4")
             $.ajax({
                 url : 'http://localhost:8888/back/login',
                 method : 'post',
