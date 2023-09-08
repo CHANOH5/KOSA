@@ -5,49 +5,43 @@
         <title>Koreabucks Korea</title>
 
         <link rel="stylesheet" href="../css/main_css.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
         <script>
 
-            function ajaxHandler(method, u, target) {
-                console.log(u)
-                // JQuery에서 XMLHttpRequest()를 처리하는 방법
-                    $.ajax({
-                        url: u,// property이름 : 매개변수
-                        method: method,
-                        success: (responseText)=>{ // 요청이 완료되고 응답이 성공적으로 됐을때 할 일
-                            target.html(responseText)
-                        },
-                        error: () => {
-                            alert('응답실패')
-                        }
-                    }) // $.ajax
-            } // ajaxHandler
+            function ajaxHandler(method, url, target) {
+            console.log(url)
+            const xhttp = new XMLHttpRequest()
+            xhttp.addEventListener('readystatechange', function () {
+                // alert(this.readyState + ":" + this.status)
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        target.innerHTML = this.responseText
+                    } else if (this.status == 404) {
+                        alert('자원이 없습니다')
+                    } else if (this.status == 500) {
+                        alert('서버실행시 오류가 발생했습니다')
+                    } else {
+                        alert(this.responseText)
+                    }
+                }
+            })
+            xhttp.open(method, url)
+            xhttp.send()
+        }
 
-            // window.addEventListener('load', () => {
-            // $(document).ready()
-            $(()=>{
-                
+            window.addEventListener('load', ()=>{
                 // DOM트리에서 section객체 찾기
                 const sectionObj = document.querySelector('section')
-                const $sectionObj = $('section')
-
-                console.log("--- 자바스크립트 sectionObj 객체 ---");
-                console.log(sectionObj) 
-                console.log("--- JQuery sectionObj 객체 ---");
-                console.log($sectionObj);
-                console.log(sectionObj === $sectionObj);
-                console.log(sectionObj === $sectionObj.get(0));
 
                 const menus = document.querySelectorAll('nav>ul>li>a')
-                const $menus = $('nav>ul>li>a')
 
-                // ----- 메뉴객체에서 클릭이벤트가 발생했을 때 할 일 START -----
-                $menus.click((e) => {
+                menus.forEach((menu, index)=>{
+                    // ----- 메뉴객체에서 클릭이벤트 발생할 때 할 일 START -----
+                    menu.addEventListener('click', (e)=>{
                         // alert('메뉴클릭됨')
                         // console.log(e.target.class);
                         // 화살표함수 내에서 this는 window객체 이므로 사용x
-                        switch (e.target.className) {
+                        switch(e.target.className) {
                             case 'login':
                                 //location.href = "http://www.naver.com"
                                 // const xhttp = new XMLHttpRequest(); // 객체 생성
@@ -55,38 +49,37 @@
                                 //     // 응답되었을 때 응답 내용을 section영역에 보여줌 -> section객체를 찾아놓자 미리
                                 //     sectionObj.innerHTML = this.responseText
                                 // })
-                                ajaxHandler('GET', "./login.html", $sectionObj)
+                                ajaxHandler('GET', "./login.html", sectionObj)
 
                                 break;
                             case 'signup':
 
-                                ajaxHandler('GET', "./signup.html", $sectionObj)
+                                ajaxHandler('GET', "./signup.html", sectionObj)
 
                                 break;
                             case 'logout':
                                 break;
                             case 'productlist':
 
-                                ajaxHandler('GET', "./productlist.html", $sectionObj)
+                                ajaxHandler('GET', "./productlist.html", sectionObj)
 
                                 break;
                             case 'cartlist':
                                 break;
                             case 'orderlist':
                                 break;
-                            default:
+                            default :
                                 break;
                         }
                         e.preventDefault();
-                })
+                    }) // menu.addEventListener
+                    // ----- 메뉴객체에서 클릭이벤트 발생할 때 할 일 END -----
+                }) // menus.forEach
 
-                // ----- 메뉴객체에서 클릭이벤트가 발생했을 때 할 일 END -----
-
-            }) // window.addEventListener, $(()=>
+            }) // window.addEventListener
         </script>
 
     </head>
-
     <body>
         <header>
             <img src="../images/logo.png" alt="로고">
@@ -110,5 +103,4 @@
         </footer>
 
     </body>
-
 </html>
