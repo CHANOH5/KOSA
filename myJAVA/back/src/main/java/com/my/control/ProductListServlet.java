@@ -1,7 +1,6 @@
 package com.my.control;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.my.dto.PageGroup;
 import com.my.dto.Product;
 import com.my.exception.FindException;
 import com.my.service.ProductService;
@@ -38,10 +38,12 @@ public class ProductListServlet extends HttpServlet {
 		String path = "productlistresult.jsp";
 		try {
 			
-			List<Product> list = service.findAll(cp);
+//			List<Product> list = service.findAll(cp);
 			
 			// 데이터 보낼 list를 담기
-			req.setAttribute("list", list);
+//			req.setAttribute("list", list);
+			PageGroup<Product> pb = service.findAll(cp);
+			req.setAttribute("pb", pb);
 
 		} catch (FindException e) {
 			e.printStackTrace();

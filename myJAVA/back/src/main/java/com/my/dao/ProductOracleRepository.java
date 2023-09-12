@@ -74,17 +74,61 @@ public class ProductOracleRepository implements ProductRepository {
 	
 	// 테스트하기 
 	
-	public static void main(String[] args) {
-		ProductOracleRepository repository = new ProductOracleRepository();
-		int startRow = 2;
-		int endRow = 4;
+	@Override
+	public Integer selectCount() throws FindException {
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		// db와 연결
+		try {
+			conn = MyConnection.getConnection();
+		} catch (Exception e) {
+			throw new FindException(e.getMessage());
+		} // try-catch
+		
+		// db와 연결이 되면 아래 sql문 수행
+		String selectCountSQL = "SELECT COUNT(*)\r\n"
+				+ "FROM product";
 		
 		try {
-			List<Product> list = repository.selectAll(startRow, endRow);
-			System.out.println(list);
-		} catch (FindException e) {
+			pstmt = conn.prepareStatement(selectCountSQL);
+			
+			rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt(1); // 전체상품 수 
+
+		} catch (SQLException e) {
 			e.printStackTrace();
-		} // try-catch
+			throw new FindException(e.getMessage());
+		} finally {
+			MyConnection.close(conn, pstmt, rs);
+		} // try-catch-finally
+
+	} // selectCount
+	
+	
+	//==================== 테스트 메서드========================
+
+	public static void main(String[] args) {
+		ProductOracleRepository repository = new ProductOracleRepository();
+//		int startRow = 2;
+//		int endRow = 4;
+//		
+//		try {
+//			List<Product> list = repository.selectAll(startRow, endRow);
+//			System.out.println(list);
+//		} catch (FindException e) {
+//			e.printStackTrace();
+//		} // try-catch
+		
+		// 전체 상품 수 테스트
+		try {
+			System.out.println(repository.selectCount());
+		} catch(FindException e) {
+			e.printStackTrace();
+		}
 	} // test-main
 
 } // end class
