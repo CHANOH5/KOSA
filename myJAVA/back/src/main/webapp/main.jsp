@@ -9,8 +9,9 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
-	<section>
-	</section>
+    <section> <!-- 메뉴에 해당하는 데이터들 -->
+        Main입니다
+    </section>
 	<%@include file="footer.jsp" %>
 </body>
 </html>
