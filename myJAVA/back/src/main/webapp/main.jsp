@@ -81,6 +81,8 @@
 
                         ajaxHandler('GET', "./productlist", $sectionObj)
 
+						// ajaxHandler('GET', "http://localhost:8888/back/productlistjson", $sectionObj)
+						
                         break;
                     case 'cartlist':
                         break;

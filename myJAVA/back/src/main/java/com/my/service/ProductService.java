@@ -52,4 +52,8 @@ public class ProductService {
 		
 	} // findAll
 	
+	public Product findByProdNo(String prodNo) throws FindException {
+		return repository.selectByProdNo(prodNo);
+	} // findByProdNo
+	
 } // end class

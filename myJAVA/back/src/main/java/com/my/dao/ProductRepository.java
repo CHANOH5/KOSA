@@ -23,4 +23,12 @@ public interface ProductRepository {
 	 */
 	Integer selectCount() throws FindException;
 	
+	/**
+	 * 상품번호에 해당하는 상품객체를 검색한다(반환한다)
+	 * @param prodNo 상품번호
+	 * @return 상품객체를 반환한다
+	 * @throws FindException - 상품이 없거나 DB와의 연결 실패한 경우 예외발생
+	 */
+	Product selectByProdNo(String prodNo) throws FindException;
+	
 } // end class

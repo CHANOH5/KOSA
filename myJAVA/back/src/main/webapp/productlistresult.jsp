@@ -49,10 +49,16 @@
 		    </style>
 		    
 		    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		    
 		    <script>
 			    $(()=>{
 			    	$('.productlist>.pagegroup>span').click((e)=>{
-			    		alert($(e.target).html() + ":" + $(e.target).attr('class') + "페이지가 클릭되었습니다.")
+			    		// alert($(e.target).html() + ":" + $(e.target).attr('class') + "페이지가 클릭되었습니다.")
+				    	const pg = $(e.target).attr('class') //pg1, pg2, ...
+						const currentPage = pg.substr(2)     //1, 2, ... substr-> 특정 인덱스 이후로부터 뽑기
+						const url = './productlist?currentPage='+currentPage
+						const $section = $('section')
+						$section.load(url)
 			    	})
 			    })
 		    </script>
@@ -75,7 +81,6 @@
 			%>
 			
 			<div class="pagegroup">
-
 				<%
 				int startPage = pb.getStartPage();
 				int endPage = pb.getEndPage();
