@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="../js/header.js"></script>
+    
     <script>
         $(() => {
             console.log(location.search); // ?prodno=C0001
@@ -38,21 +43,38 @@
             })
         })
     </script>
-
 </head>
 <body>
-    <div class="product">
-        <img src="../images/images.jpg" alt="">
-        <div class="">
-            <ul>
-                <li>상품이름:<span class="prodname">  </span></li>
-                <li>상품번호:<span class="prodno">  </span></li>
-                <li>상품가격:<span class="prodprice">  </span></li>
-                <li>수량:<input type="number" class="quantity" value="1" max="10" min="1"></li>
-                <li><button>장바구니 넣기</button></li>
-            </ul>
+    <header>
+        <img src="../images/logo.png" alt="로고">
+    </header>
+    <nav id="nav"> <!-- 메뉴들 -->
+        <ul id="nav_ul">
+            <li><a href="#" class="login">로그인</a></li>
+            <li><a href="#" class="signup">가입</a></li>
+            <li><a href="#" class="logout">로그아웃</a></li>
+            <li><a href="#" class="productlist">상품목록</a></li>
+            <li><a href="#" class="cartlist">장바구니목록</a></li>
+            <li><a href="#" class="orderlist">주문목록</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div class="product">
+            <img src="../images/images.jpg" alt="">
+            <div class="">
+                <ul>
+                    <li>상품이름:<span class="prodname">  </span></li>
+                    <li>상품번호:<span class="prodno">  </span></li>
+                    <li>상품가격:<span class="prodprice">  </span></li>
+                    <li>수량:<input type="number" class="quantity" value="1" max="10" min="1"></li>
+                    <li><button>장바구니 넣기</button></li>
+                </ul>
+            </div>
         </div>
-
-    </div>
+    </section>
+    <footer id="footer"> <!-- 맺음말 -->
+        사업자등록번호 : 201-81-21515 주식회사 에스씨케이컴퍼니 대표이사 : 손정현 TEL : 1522-3232 개인정보 책임자 : 이찬우
+        ⓒ 2023 Starbucks Coffee Company. All Rights Reserved.
+    </footer>
 </body>
 </html>

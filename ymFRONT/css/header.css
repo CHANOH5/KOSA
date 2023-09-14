@@ -1,0 +1,33 @@
+
+/* 다른 css 파일 사용하기 */
+@import url('base.css');
+
+/* header */
+nav{
+    width: 100%;
+    display: inline;
+    text-align: center;
+    left: 100px;
+}
+#nav_ul{
+    width: 50%;
+    display: inline-block;
+    list-style-type: none; /* ul태그 점 삭제 */
+    margin-left: 380px;
+}
+#nav_ul>li {
+    float: left;
+    margin: 10px;
+    margin-left: 80px;
+}
+nav>ul>li>a:hover{ /* hover */
+    background-color:coral;
+    color: white;
+    text-decoration: underline; /* 마우스 올라갔을 때 밑줄 */
+}
+/* main */
+section{
+    height: 700px;
+    background-color:wheat;
+    margin-top: 10px;
+}

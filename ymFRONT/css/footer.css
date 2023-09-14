@@ -1,0 +1,8 @@
+/* footer */
+#footer{
+    height: 50px;
+    text-align: center;
+    background-color: gainsboro;
+    margin-top: 10px;
+    padding: 20px;
+}
