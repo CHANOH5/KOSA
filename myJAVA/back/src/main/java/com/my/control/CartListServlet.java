@@ -3,6 +3,7 @@ package com.my.control;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,41 +32,45 @@ public class CartListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
+		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		
 		// 응답형식 JSON
 		res.setContentType("application/json; charset=utf-8");
 		
-		// CORS문제 해결
-		res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
-
 		// 응답 출력스트림 얻기
 		PrintWriter out = res.getWriter();
 		
 		// 요청전달데이터 얻기
 //		String cartData = req.getParameter("prodno");
 		HttpSession session = req.getSession();
-		Map<String, Integer> cartData = (Map)session.getAttribute("cart");
+		Map<String, Integer> cart = (Map)session.getAttribute("cart");
 		
-//		List<Map<String, Integer>> list = new ArrayList<Map<String, Integer>>();
+		// List<T> 처럼 제네릭타입을 준건데 타입을 Map으로 정한 것
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
-//		Map.Entry<String, Integer> key = (Map)session.getAttribute("cart");
+	    if (cart == null) {
+	        cart.remove("null");
+	    }
+		
+		// prodNo에 map의 keySet메서드를 써서 key값들을 넣음
+		for(String prodNo : cart.keySet()) {
+			// key를 가져와 quantitiy에 value값을 대입
+			int quantity = cart.get(prodNo);
+			// prodNo와 quantity를 map객체에 넣어음 -> list객체에 넣기위함
+			Map<String, Object> map = new HashMap<>();
+			map.put("prodNo", prodNo);
+			map.put("quantity", quantity);
+			list.add(map);
 
-		for(String prodNo : cartData.keySet()) {
-			cartData.get(prodNo);
-		}
+		} // for
 		
 		ObjectMapper mapper = new ObjectMapper();
 
-		try {
-			
-//			Product p = service.findByProdNo(cartData);
-			
-			String jsonStr = mapper.writeValueAsString(p);
-			out.print(jsonStr);
-			
-		} catch (FindException e) {
-			e.printStackTrace();
-		} // try-catch
-		
+//		Product p = service.findByProdNo(cartData);
+		String jsonStr = mapper.writeValueAsString(list);
+		out.print(jsonStr);
+
 	} // doGet
 
 } // end class

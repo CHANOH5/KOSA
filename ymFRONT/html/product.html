@@ -9,40 +9,8 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="../js/header.js"></script>
-    
-    <script>
-        $(() => {
-            console.log(location.search); // ?prodno=C0001
-            const queryStr = location.search.substr(1) // prodno=C0001
-            $.ajax({
-                url : "http://localhost:8888/back/productjson",
-                method : 'get',
-                data : queryStr,
-                success : (responseJSONObj) => {
-                    if(responseJSONObj.msg != undefined) { // 상품검색 실패인 경우
-                        alert(responseJSONObj.msg)
-                    } else { //상품검색이 성공인 경우
-                        $('div.product>img').attr('src', `../images/${responseJSONObj.prodNo}.jpg`)
-                        $('div.product>div>ul>li>span.prodname').html(responseJSONObj.prodName)
-                        $('div.product>div>ul>li>span.prodno').html(responseJSONObj.prodNo)
-                        $('div.product>div>ul>li>span.prodprice').html(responseJSONObj.prodPrice)
-                    }
+    <script src="../js/product.js"></script>
 
-                    // const prodName = responseJSONObj.prodName
-                    // const prodNo = responseJSONObj.prodNo
-                    // const prodPrice = responseJSONObj.prodPrice
-
-                    // const $divProduct = $('div.product')
-                    // $divProduct.find("div.product>img").attr('src', '../images/' + prodNo + '.jpg')
-                    // $divProduct.find("div.product>div>ul>li>span").html(prodname).attr('')
-                },
-                error: (jqxhr) => {
-                    console.log(jqxhr.state())
-                    console.log(jqxhr.status)
-                }            
-            })
-        })
-    </script>
 </head>
 <body>
     <header>

@@ -31,7 +31,9 @@ public class ProdictJsonServlet extends HttpServlet {
 		
 		//응답형식
 		res.setContentType("application/json; charset=utf-8");
-		res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+		// CORS문제 해결
+//		res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
 		
 		// 응답 출력스트림 얻기
 		PrintWriter out = res.getWriter();

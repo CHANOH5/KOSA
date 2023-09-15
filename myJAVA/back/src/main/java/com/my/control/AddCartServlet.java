@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -19,9 +20,12 @@ public class AddCartServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
+		// CORS 문제 해결
+		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		
 		// 1.요청전달 데이터 얻기
 		String prodNo = req.getParameter("prodNo");
-		
 		String quantityStr = req.getParameter("quantity");
 		int quantity = Integer.parseInt(quantityStr);
 		
@@ -47,7 +51,7 @@ public class AddCartServlet extends HttpServlet {
 		//    어트리뷰트의 요소로 추가한다.
 		if(cart.containsKey(prodNo)) {
             // 상품번호가 있으면 수량을 누적
-            int add = cart.get(prodNo);
+            int add =cart.get(prodNo);
             cart.put(prodNo, add + quantity);
 		} else { 
 			// 없으면 그냥 추가
@@ -55,7 +59,7 @@ public class AddCartServlet extends HttpServlet {
 		} // if-else
 		
 		// 6. 어트리뷰트 요소들을 모두 출력한다
-		for(Map.Entry<String, Integer>key : cart.entrySet()) {
+		for(Entry<String, Integer> key : cart.entrySet()) {
 			System.out.println("상품번호 : " + key.getKey() + ", 상품수량 : " + key.getValue());
 		} // for
 		
