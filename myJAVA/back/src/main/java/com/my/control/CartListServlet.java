@@ -15,62 +15,71 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.my.dto.Product;
 import com.my.exception.FindException;
 import com.my.service.ProductService;
-
 
 
 @WebServlet("/cartlist")
 public class CartListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
 	private ProductService service;
 	
 	public CartListServlet() {
 		service = new ProductService();
 	}
-
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
-		res.setHeader("Access-Control-Allow-Credentials", "true");
+		// 서블릿이 응답할 형식 지정하기
+		response.setContentType("application/json;charset=utf-8");
+		// 헤더 설정
+		response.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
+		response.setHeader("Access-Control-Allow-Credentials", "true");
 		
-		// 응답형식 JSON
-		res.setContentType("application/json; charset=utf-8");
-		
-		// 응답 출력스트림 얻기
-		PrintWriter out = res.getWriter();
-		
-		// 요청전달데이터 얻기
-//		String cartData = req.getParameter("prodno");
-		HttpSession session = req.getSession();
-		Map<String, Integer> cart = (Map)session.getAttribute("cart");
-		
-		// List<T> 처럼 제네릭타입을 준건데 타입을 Map으로 정한 것
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		
-	    if (cart == null) {
-	        cart.remove("null");
-	    }
-		
-		// prodNo에 map의 keySet메서드를 써서 key값들을 넣음
-		for(String prodNo : cart.keySet()) {
-			// key를 가져와 quantitiy에 value값을 대입
-			int quantity = cart.get(prodNo);
-			// prodNo와 quantity를 map객체에 넣어음 -> list객체에 넣기위함
-			Map<String, Object> map = new HashMap<>();
-			map.put("prodNo", prodNo);
-			map.put("quantity", quantity);
-			list.add(map);
-
-		} // for
-		
+		// 응답 출력 스트림 얻기
+		PrintWriter out = response.getWriter();
 		ObjectMapper mapper = new ObjectMapper();
-
-//		Product p = service.findByProdNo(cartData);
+		
+		// 세션 생성
+		HttpSession session = request.getSession();
+		
+		// session 객체의 Attribute값 얻기 (이름: "cart")
+		Map<String, Integer> cart = (Map<String, Integer>)session.getAttribute("cart");	
+		
+		List list = new ArrayList<>();
+		
+		if(cart == null) {
+			cart = new HashMap<String, Integer>();
+			session.setAttribute("cart", cart);
+		} // if
+		
+		Product p;
+		for(String prodNo : cart.keySet()) {
+			int quantity = cart.get(prodNo);
+			
+			try {
+				p = service.findByProdNo(prodNo);
+				Map map = new HashMap<>();
+				
+				map.put("product", p);
+				map.put("quantity", quantity);
+				
+				list.add(map);
+			} catch (FindException e) {
+				e.printStackTrace();
+			} // try-catch
+			
+		} // for
+			
+		// JSON 문자열 응답
+		
 		String jsonStr = mapper.writeValueAsString(list);
+		System.out.println(jsonStr);
 		out.print(jsonStr);
+		
+	} // doGet()
 
-	} // doGet
 
 } // end class

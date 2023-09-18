@@ -1,65 +1,74 @@
 $(() => {
     $.ajax({
-            // ----- 쿠키정보가 전달되도록 CORS 문제 해결 -----
         xhrFields: {
-            withCredentials: true
+            withCredentials: true // 인증서를 가지고 .ajax를 요청! (쿠키가 따라갈 수 있도록)
         },
         url: 'http://192.168.1.22:8888/back/cartlist',
-        method : 'get',
-        // data : , 요청 전달데이터가 있으면 작성
-        success:(responseJSONObj)=>{
+        method: 'get',
+        // data: 요청 전달 데이터가 없기 때문에 생략
+        success: (responseJSONObj) => {
+            // 응답 내용(배열)의 첫 번째 요소
+            // const p = responseJSONObj[0].product
+            // const q = responseJSONObj[0].quantity
+            // console.log(p, q)
 
-            // const originCartlist = $('div.cartlist>table>tbody').first()
-            const originCartlist = $('div.cartlist>table>thead>tr') // 원본
-            const tbodyObj = $('div.cartlist>table>tbody') // tbody 객체
+            const $originTrObj = $('div.cartlist>table>thead>tr') // 원본
+            const $tbodyObj = $('div.cartlist>table>tbody') // 원본
+            let totalPrice = 0; // 총가격
 
-            
-            console.log(responseJSONObj);
-            
-            responseJSONObj.forEach(element => {
-                // JSON형태로 보내도 매개변수로 responseJSONObj 받으면
-                // 자동 자바스크립트객체 형태로 응답을 받음 (배열로 이해)
-                const $copyCartlist = originCartlist.clone()
-                
-                // const p = responseJSONObj[0].product // 상품
-                // const q = responseJSONObj[0].quantity // 수량
+            responseJSONObj.forEach(element => {  // 매개변수 = (인덱스, 요소)
+
+                const $copyTrObj = $originTrObj.clone() // 복제본
+                $copyTrObj.empty()
                 const p = element.product // 상품
                 const q = element.quantity // 수량
-                console.log(p, q);
 
-                // let prodNo = p.prodNo
-                // // let prodName = p.prodName
-                // // let prodPrice = p.prodPrice
-                // let quantity = q
+                console.log('p :', p);
 
-                // console.log(prodNo, prodName, prodPrice, quantity);
+                const $prodNoTdObj = $('<td>') // td 객체 생성($'td')는 객체찾기 $('<td>')는 객체 생성
+                $prodNoTdObj.append(p.prodNo) // td 객체의 하위 노드 추가
+                $copyTrObj.append($prodNoTdObj) // 복제본에 td 객체를 추가
 
-                // $copyCartlist.find('tr>th.prodNo').html(prodNo)
-                // $copyCartlist.find('tr>th.prodName').html(prodName)
-                // $copyCartlist.find('tr>th.prodPrice').html(prodPrice)
-                // $copyCartlist.find('tr>th.quantity').html(quantity)
+                const $prodNameTdObj = $('<td>')
+                $prodNameTdObj.append(p.prodName)
+                $copyTrObj.append($prodNameTdObj)
 
-                const $prodNoTdObj = $('.prodNo')
-                $prodNoTdObj.addClass('prodNo')
-                $prodNoTdObj.append(p.prodNo)
-                $copyCartlist.append($copyCartlist)
+                const $prodPriceTdObj = $('<td>')
+                $prodPriceTdObj.append(p.prodPrice)
+                $copyTrObj.append($prodPriceTdObj)
 
-                const $prodNameTdObj = $('.prodName')
-                $prodNoTdObj.addClass('prodName')
-                $prodNoTdObj.append(p.prodName)
-                $copyCartlist.append($prodNameTdObj)
+                const $quantityTdObj = $('<td>')
+                $quantityTdObj.append(q)
+                $copyTrObj.append($quantityTdObj)
 
-                const $prodPriceTdObj = $('.prodPrice')
-                $prodNoTdObj.addClass('prodPrice')
-                $prodNoTdObj.append(p.prodPrice)
-                $copyCartlist.append($prodPriceTdObj)
+                $tbodyObj.append($copyTrObj) // tbody 객체에 복제본 개체 추가
 
-                const $prodQuantityTdObj = $('.quantity')
-                $prodNoTdObj.addClass('quantity')
-                $prodNoTdObj.append(q)
-                $copyCartlist.append($prodQuantityTdObj)
+            }) // responseJSONObj.forEach()
 
-            });
-        }
-    }) // $.ajax
-})
+            const $copyTrObj = $originTrObj.clone() // 복제본
+
+        } // success
+
+        
+    }) // .ajax
+
+    //----주문하기 버튼객체에서 클릭이벤트가 발생했을 때 할 일 START----
+        $('div.cartlist>button').click(()=>{
+            $.ajax({
+                xhrFields: {
+                    withCredentials: true
+                },
+                url: 'http://192.168.1.22:8888/back/addorder',
+                method : 'get',
+                success: (responseJSONObj)=>{
+                    if(responseJSONObj.status == 0){ //주문실패
+                        alert(responseJSONObj.msg)
+                    }else{
+                        $('nav>ul>li>a.orderlist').click()
+                    }
+                }
+            })
+        })
+        //----주문하기 버튼객체에서 클릭이벤트가 발생했을 때 할 일 END----
+
+}) // $(() => {}

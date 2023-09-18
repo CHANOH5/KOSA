@@ -27,7 +27,6 @@ $(()=> {
                     let prodName = p.prodName // prodName을 받아와서 주기위함
                     $copyProduct.find("ul>li>img").attr('src', '../images/' + prodNo + '.jpg').attr("alt", prodName)
                     $copyProduct.find("ul>li>span").html(prodName).attr("alt", prodName)
-                    
                 })
 
                 // 원본객체 숨기기

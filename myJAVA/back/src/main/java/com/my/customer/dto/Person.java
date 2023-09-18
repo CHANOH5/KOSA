@@ -2,13 +2,11 @@ package com.my.customer.dto;
 
 import java.io.Serializable;
 
+import lombok.Data;
+
+@Data
 public class Person implements Serializable{
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
 	
 	// 필드
 	protected String name;
@@ -23,19 +21,6 @@ public class Person implements Serializable{
 		this.name = name;
 		this.address = address;
 	}
-	
-	// 메서드
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
+
 
 } // end class

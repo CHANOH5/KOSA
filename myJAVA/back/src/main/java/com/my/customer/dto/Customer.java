@@ -1,12 +1,9 @@
 package com.my.customer.dto;
 
-import java.io.Serializable;
+import lombok.Data;
 
+@Data
 public class Customer extends Person {
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	//필드
@@ -33,23 +30,5 @@ public class Customer extends Person {
 //		super(name, address);
 	}
 
-	// 메서드
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getPwd() {
-		return pwd;
-	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
-	
-	public String toString() {
-		return "아이디 : " + id + ", 비밀번호 : " + pwd + ", 이름 : " + name + ", 주소 : " + address;
-	}
 	
 } // end class
