@@ -46,7 +46,8 @@ $(() => {
             }) // responseJSONObj.forEach()
 
             const $copyTrObj = $originTrObj.clone() // 복제본
-
+            
+            
         } // success
         
         

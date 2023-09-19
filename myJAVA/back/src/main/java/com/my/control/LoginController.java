@@ -31,8 +31,10 @@ public class LoginController extends HttpServlet {
 		
 //		res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
 		// 응답형식 지정 -> JSON형태로 할거임
+		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");	
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+		
 		res.setContentType("application/json; charset=utf-8");
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
 		
 		// 응답출력스트림 얻기
 		PrintWriter out = res.getWriter();
@@ -59,6 +61,8 @@ public class LoginController extends HttpServlet {
 			
 			// 로그인되면 loginedId값을 id로 세팅할거임
 			session.setAttribute("loginedId", id);
+			
+			System.out.println(session);
 			
 		} catch (FindException e) {
 			e.printStackTrace();

@@ -1,6 +1,9 @@
 package com.my.order.dao;
 
+import java.util.List;
+
 import com.my.exception.AddException;
+import com.my.exception.FindException;
 import com.my.order.dto.OrderInfo;
 
 public interface OrderRepository {
@@ -11,5 +14,7 @@ public interface OrderRepository {
 	 * @throws AddException
 	 */
 	void insert(OrderInfo info) throws AddException;
+	
+	public List<OrderInfo> selectById(String orderId) throws AddException, FindException;
 
 } // end class

@@ -23,7 +23,7 @@ $(() =>{
         const pwdValue = $('input[name=pwd]').val()
 
         alert("ajax-3")
-        const idpwddata = `id=${gidValue}&pwd=${pwdValue}`
+        const idpwddata = `id=${idValue}&pwd=${pwdValue}`
         alert(idpwddata);
 
         alert("ajax-4")
