@@ -1,42 +1,29 @@
-// window.addEventListener('load', ()=> {
-    $(() => {
-        //DOM트리에서 가입하기버튼객체찾기
-        // const btSignupObj = document.querySelector('form.signup>button[type=submit]')
-        const $btSignupObj = $('form.signup>button[type=submit]')
-        //DOM트리에서 id입력란객체찾기
-        // document.getElementById('i')
-        // document.querySelector('#i')
-        // const idObj = document.querySelector('form.signup>input[name=id]')
-        const $idObj = $('form.signup>input[name=id]')
-        //----id입력란객체에서 focus이벤트 발생했을 때 할 일 START----
-        // idObj.addEventListener('focus', ()=>{
-        //     btSignupObj.style.display = 'none'
-        // })
-        $idObj.focus(() => {
-            $btSignupObj.hide()
-        })
-        //----id입력란객체에서 focus이벤트 발생했을 때 할 일 END----
-    
-    
-        //DOM트리에서 중복확인버튼객체찾기
-        // const btDupchkObj = document.querySelector('form.signup>button[type=button]')
-        const $btDupchkObj = $('form.signup>button[type=button]')
-    
-        //----중복확인버튼객체에서 클릭이벤트 발생했을때 할 일 START----
-        // btDupchkObj.addEventListener('click', ()=>{
-        $btDupchkObj.click(() => {
-            // if('admin' == idObj.value){
-            if ('admin' == $idObj.val()) {
-                alert('이미 사용중인 아이디입니다')
+window.addEventListener(
+    'load', function(){
+
+        // const btObj = document.querySelector('table>tr>td>input[type=button]')
+        const btObj = document.querySelector('#id_check')
+        const idObj = document.querySelector('input[name=id]')
+        const signObj = document.querySelector('input[type=submit]')
+
+    // ----- id입력란 객체에서 focus 이벤트 발생했을 때 할 일 START ----- 
+        idObj.addEventListener('focus', () => {
+            signObj.style.display = 'none'
+        }) // idObj.addEventListener
+    // ----- id입력란 객체에서 focus 이벤트 발생했을 때 할 일 END -----
+
+    // ----- 중복확인버튼객체에서 클릭이벤트 발생했을 때 할 일 START -----
+        btObj.addEventListener('click', () => {
+            console.log('클릭');
+            if(idObj.value == 'admin') {
+                alert('이미 사용중인 아이디입니다.')
             } else {
-                alert('사용가능한 아이디입니다')
-                // btSignupObj.style.display = 'inline-block'
-                $btSignupObj.show()
+                alert('사용 가능한 아이디 입니다.')
+                signObj.style.display = 'inline-block'
             } // if-else
-        }) // .click()
-        //----중복확인버튼객체에서 클릭이벤트 발생했을때 할 일 END----
-    
-    
+        }) // btObj.addEventListener
+    // ----- 중복확인버튼객체에서 클릭이벤트 발생했을 때 할 일 END -----
+
         // const formObj = document.querySelector('form')
         const $formObj = $('form.signup')
 
@@ -77,5 +64,5 @@
         }) // formObj.addEventListener
     // ----- submit 버튼 클릭이벤트 발생했을 때 할 일 END -----
 
-    
-    })
+    } // function
+) // window

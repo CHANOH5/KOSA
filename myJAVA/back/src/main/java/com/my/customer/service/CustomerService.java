@@ -1,8 +1,9 @@
-package com.my.custoemr.service;
+package com.my.customer.service;
 
 import com.my.customer.dao.CustomerOracleMybatisRepository;
 import com.my.customer.dao.CustomerRepository;
 import com.my.customer.dto.Customer;
+import com.my.exception.AddException;
 import com.my.exception.FindException;
 
 public class CustomerService {
@@ -34,5 +35,22 @@ public class CustomerService {
 		
 		
 	} // login
+	
+	/**
+	 * 아이디에 해당하는 고객이 존재하지 않으면 FindException발생
+	 * @param id
+	 * @throws FindException
+	 */
+	public void idDupChk(String id) throws FindException {
+		
+		repository.selectById(id);
+		
+	} // idDupChk
+	
+	public void insert(Customer c) throws AddException {
+		
+		repository.insert(c);
+		
+	} // insert
 	
 } // end class
