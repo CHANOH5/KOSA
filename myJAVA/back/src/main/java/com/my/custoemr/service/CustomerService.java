@@ -1,6 +1,6 @@
 package com.my.custoemr.service;
 
-import com.my.customer.dao.CustomerOracleRepository;
+import com.my.customer.dao.CustomerOracleMybatisRepository;
 import com.my.customer.dao.CustomerRepository;
 import com.my.customer.dto.Customer;
 import com.my.exception.FindException;
@@ -9,7 +9,7 @@ public class CustomerService {
 
 	private CustomerRepository repository;
 	public CustomerService() {
-		repository = new CustomerOracleRepository();
+		repository = new CustomerOracleMybatisRepository();
 	}
 	
 	/**

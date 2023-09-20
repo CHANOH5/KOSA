@@ -1,6 +1,6 @@
 package com.my.order.dto;
 
-import com.my.dto.Product;
+import com.my.product.dto.Product;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

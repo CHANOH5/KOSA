@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.my.dao.ProductOracleRepository;
-import com.my.dao.ProductRepository;
-import com.my.dto.Product;
+import com.my.product.dao.ProductOracleRepository;
+import com.my.product.dao.ProductRepository;
+import com.my.product.dto.Product;
 
 @WebServlet("/productjson")
 public class ProdictJsonServlet extends HttpServlet {

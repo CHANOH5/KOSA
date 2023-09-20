@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.my.dto.Product;
 import com.my.exception.FindException;
-import com.my.service.ProductService;
+import com.my.product.dto.Product;
+import com.my.product.service.ProductService;
 
 
 @WebServlet("/cartlist")

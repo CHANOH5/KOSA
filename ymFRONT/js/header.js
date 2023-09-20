@@ -91,6 +91,9 @@ $(() => {
                 
                 break;
             case 'orderlist':
+
+                ajaxHandler('GET', "./orderlist.html", $sectionObj)
+
                 break;
             default:
                 break;

@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.my.dto.Product;
 import com.my.exception.AddException;
 import com.my.order.dto.OrderInfo;
 import com.my.order.dto.OrderLine;
 import com.my.order.service.OrderService;
+import com.my.product.dto.Product;
 
 @WebServlet("/addorder")
 public class AddOrderServlet extends HttpServlet {

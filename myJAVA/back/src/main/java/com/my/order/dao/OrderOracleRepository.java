@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.my.dto.Product;
 import com.my.exception.AddException;
 import com.my.exception.FindException;
 import com.my.order.dto.OrderInfo;
 import com.my.order.dto.OrderLine;
+import com.my.product.dto.Product;
 import com.my.sql.MyConnection;
 
 public class OrderOracleRepository implements OrderRepository {

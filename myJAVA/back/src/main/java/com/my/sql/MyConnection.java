@@ -26,6 +26,16 @@ public class MyConnection {
 		
 		return DriverManager.getConnection(url, user, password);
 		
+		
+//		String resource = "org/mybatis/example/mybatis-config.xml";
+//		InputStream inputStream = Resources.getResourceAsStream(resource);
+//		SqlSessionFactory sqlSessionFactory =
+//		new SqlSessionFactoryBuilder().build(inputStream);
+//		
+//		SqlSession session = sqlSessionFactory.openSession();
+//		return session.getConnection();
+		
+//		return null;
 	} // getConnection()
 	
 	/**

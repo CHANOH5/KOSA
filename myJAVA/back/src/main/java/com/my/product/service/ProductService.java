@@ -1,18 +1,18 @@
-package com.my.service;
+package com.my.product.service;
 
 import java.util.List;
 
-import com.my.dao.ProductOracleRepository;
-import com.my.dao.ProductRepository;
-import com.my.dto.PageGroup;
-import com.my.dto.Product;
 import com.my.exception.FindException;
+import com.my.product.dao.ProductOracleMybatisRepository;
+import com.my.product.dao.ProductRepository;
+import com.my.product.dto.PageGroup;
+import com.my.product.dto.Product;
 
 public class ProductService {
 
 	private ProductRepository repository;
 	public ProductService() {
-		repository = new ProductOracleRepository();
+		repository = new ProductOracleMybatisRepository();
 	}
 	
 	public PageGroup<Product> findAll(int currentPage) throws FindException {

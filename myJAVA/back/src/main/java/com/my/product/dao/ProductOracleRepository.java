@@ -1,4 +1,4 @@
-package com.my.dao;
+package com.my.product.dao;
 
 import java.lang.module.FindException;
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.my.dto.Product;
+import com.my.product.dto.Product;
 import com.my.sql.MyConnection;
 
 public class ProductOracleRepository implements ProductRepository {

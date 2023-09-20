@@ -1,9 +1,9 @@
-package com.my.dao;
+package com.my.product.dao;
 
 import java.lang.module.FindException;
 import java.util.List;
 
-import com.my.dto.Product;
+import com.my.product.dto.Product;
 
 public interface ProductRepository {
 
