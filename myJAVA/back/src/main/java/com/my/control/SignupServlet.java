@@ -51,9 +51,9 @@ public class SignupServlet extends HttpServlet {
 		try {
 
 			Attach attach = new Attach(req);
-			String id = req.getParameter("id");
-			String pwd = req.getParameter("pwd");
-			String name = req.getParameter("name");
+			String id = attach.getParameter("id");
+			String pwd = attach.getParameter("pwd");
+			String name = attach.getParameter("name");
 			Customer c = new Customer(id, pwd, name, null);
 			
 			service.signup(c);

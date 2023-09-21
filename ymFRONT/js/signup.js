@@ -61,7 +61,7 @@ $(() => {
 
         console.log($pwdArr);
         console.log($nameObj);
-        
+
         if ($pwdArr.eq(0).val() != $pwdArr.eq(1).val()) {
             alert('비밀번호를 다시 입력하세요')
             $pwdArr.eq(0).focus()
@@ -86,8 +86,8 @@ $(() => {
                     // { id: $idObj.val(), pwd: $pwdArr.eq(0).val(), name: $nameObj.val() },
                     // 방법3) 폼 객체
                     // $('form').serialize(), // .serialize() = post 방식의 요청일 때에만 효과가 남!
-                    fd, 
-                    success: (responseJSONObj) => {
+                    fd,
+                success: (responseJSONObj) => {
                     alert(responseJSONObj.msg);
 
                     if (responseJSONObj.status == 1) {
@@ -136,6 +136,24 @@ $(() => {
             return false // 기본 이벤트 처리를 막아줌
         })
         //----파일업로드용 테스트 폼 객체에서 submit이벤트 발생했을때 할 일 END----
+
+        //----파일다운로드 테스트 버튼에서 클릭이벤트 발생했을때 할 일 sTART----
+        $('div.download>button').click(() => {
+            const $img = $('div.download>img')
+            $.ajax({
+                xhrFields: {
+                    responseType: "blob",
+                },
+                url: 'http://192.168.1.22:8888/back/download',
+                data: 'id=dd4',
+                success: (responseData) => {
+                    const url = URL.createObjectURL(responseData)
+                    $img.attr('src', url)
+                }
+            })
+
+        })
+        //----파일다운로드 테스트 버튼에서 클릭이벤트 발생했을때 할 일 END----
 
     })
 
