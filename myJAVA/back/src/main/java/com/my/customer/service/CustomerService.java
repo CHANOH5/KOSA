@@ -47,10 +47,12 @@ public class CustomerService {
 		
 	} // idDupChk
 	
-	public void insert(Customer c) throws AddException {
+	public void signup(Customer c) throws AddException {
 		
 		repository.insert(c);
 		
 	} // insert
+	
+	
 	
 } // end class

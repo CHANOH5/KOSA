@@ -10,9 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.my.customer.service.CustomerService;
+import com.my.exception.FindException;
 
 
 @WebServlet("/iddupchk")
@@ -35,22 +36,24 @@ public class idDupChkServlet extends HttpServlet {
 		
 		// 응답출력스트림 얻기
 		PrintWriter out = res.getWriter();
+		ObjectMapper mapper = new ObjectMapper();
 		
 		// 요청전달데이터 얻기
 		String id = req.getParameter("id");
 		
 		Map<String, Object> map = new HashMap<>();
-		
-		try {
 
-			if( ) {
-				
-			}
-	
-		} catch(Exception e) {
-			
-		}
+		try {
+			service.idDupChk(id);
+			// 고객이 있는 경우
+			map.put("status", 0);
+		} catch (FindException e) {
+			// 고객이 없는 경우
+			map.put("status", 1);
+		} // try-catch
 		
+		// JSON 응답
+		out.print( mapper.writeValueAsString(map));
 		
 	} // doGet
 

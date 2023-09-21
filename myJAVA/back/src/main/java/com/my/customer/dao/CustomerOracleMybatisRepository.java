@@ -55,41 +55,43 @@ public class CustomerOracleMybatisRepository implements CustomerRepository {
 				return c;
 			} else {
 				// select한 결과(id가 없다)가 null이면
-				throw new FindException("");	
+				throw new FindException("고객없음");	
 			} // if-else
 		
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new FindException(e.getMessage());
 		} finally {
 			if(session != null) {
 				session.close();
 			}
 		} // try-catch-finally
-		
 
-		return null;
 	} // selectById
 
 	@Override
 	public void insert(Customer c) throws AddException {
-		
+	
 		SqlSession session = null;
 		
 		try {
 			session = sqlSessionFactory.openSession();
-			session.insert("com.my.customer.customerMapper.insert", c);
+			session.insert("com.my.customer.CustomerMapper.insert", c);
 			
 			session.commit();
-			
-		} catch(Exception e) {
+		} catch (Exception e) {
 			session.rollback();
+			
+			e.printStackTrace();
 			throw new AddException(e.getMessage());
 		} finally {
+			
 			if(session != null) {
 				session.close();
-			}
-		}
+			} // if
+			
+		} // try-catch-finally
 		
-	} // insert
+	} // insert()
 
 } // end class

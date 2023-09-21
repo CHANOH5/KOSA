@@ -59,9 +59,6 @@ $(() => {
         const $pwdArr = $('form.signup>input[type=password]')   // 비밀번호 입력란 객체
         const $nameObj = $('form.signup>input[name=name]')  // 이름 입력란 객체
 
-        console.log($pwdArr);
-        console.log($nameObj);
-        
         if ($pwdArr.eq(0).val() != $pwdArr.eq(1).val()) {
             alert('비밀번호를 다시 입력하세요')
             $pwdArr.eq(0).focus()
@@ -77,8 +74,6 @@ $(() => {
                 },
                 url: 'http://192.168.1.22:8888/back/signup',
                 method: 'post',
-                contentType: false, // ajax 이용시 파일 첨부에 필요한 property
-                processData: false, // ajax 이용시 파일 첨부에 필요한 property
                 data:
                     // 방법1) 문자열 
                     // `id=${$idObj.val()}&pwd=${$pwdArr.eq(0).val()}&name=${$nameObj.val()}`,
