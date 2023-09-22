@@ -49,7 +49,7 @@ public class CustomerOracleMybatisRepository implements CustomerRepository {
 			session = sqlSessionFactory.openSession();
 			// selectOne의 인자를 mapper의 namespace 부분과
 			// select id를 넣음
-			Customer c = (Customer)session.selectOne("com.my.customer.customerMapper.selectById", id);
+			Customer c = (Customer)session.selectOne("com.my.customer.CustomerMapper.selectById", id);
 			
 			if(c != null) {
 				return c;

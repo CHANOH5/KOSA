@@ -37,8 +37,9 @@ public class DownloadServlet extends HttpServlet {
 		
 		
 		String id = req.getParameter("id");
+		String opt = req.getParameter("opt");
 		String attachesDir = "C:\\KOSA202307\\attaches";
-		String fileName = id + "_profile_";
+		String fileName = id + "_" + opt + "_";
 		File dir = new File(attachesDir);
 		
 		for(File file : dir.listFiles()) {

@@ -141,12 +141,15 @@ $(() => {
         $('div.download>button').click(() => {
             const $img = $('div.download>img')
             $.ajax({
+                // xmlHttpRequest 객체의 속성 설정, 응답형식 설정
                 xhrFields: {
+                    // withCredentials: true,
                     responseType: "blob",
                 },
                 url: 'http://192.168.1.22:8888/back/download',
                 data: 'id=dd4',
                 success: (responseData) => {
+                    console.log(responseData);
                     const url = URL.createObjectURL(responseData)
                     $img.attr('src', url)
                 }
@@ -157,4 +160,14 @@ $(() => {
 
     })
 
+    //----- 프로필 input 객체에서 change 이벤트가 발생했을 때 할 일 START -----
+
+    $('form.signup>input[name=f1]').change((e) => {
+        console.log(e.target.files[0]);
+        const url = URL.createObjectURL(e.target.files[0])
+        $('form.signup img.profile').attr('src', url)
+
+    })
+
+    //----- 프로필 input 객체에서 change 이벤트가 발생했을 때 할 일 END -----
 })

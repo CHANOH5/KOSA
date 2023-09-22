@@ -29,15 +29,39 @@ function ajaxHandler(method, u, target) {
 // $(document).ready()
 $(() => {
     const loginedId = localStorage.getItem("loginedId")
+    const $img = $('nav>ul>li>img.profile')
+    // 일단 img태그 숨겨놓음 -> 로그인 됐을때만 보여주기위함
+    $img.parent().hide()
     if (loginedId == null ){ // 로그인 안된 경우
         // 로그인, 가입메뉴 보여주기 / 로그아웃 메뉴 안보여주기
         $('nav>ul>li>a.login').show();
         $('nav>ul>li>a.signup').show();
+        $('nav>ul>li>a.intro').hide();
         $('nav>ul>li>a.logout').hide();
     } else { // 로그인이 된 경우
+
+        $.ajax({
+            xhrFields: {
+                responseType: "blob",
+            },
+            url: 'http://192.168.1.22:8888/back/download',
+            data: 'id='+loginedId + "&opt=profile",
+            success: (responseData)=>{
+                if(responseData.size > 0){
+                    const url = URL.createObjectURL(responseData)
+                    $img.attr('src', url)
+                    $img.parent().show()
+                }
+            },
+            error: (jqxhr)=>{
+                
+            }
+        })
+
         // 로그아웃 메뉴만 보여주기 
         $('nav>ul>li>a.login').hide();
         $('nav>ul>li>a.signup').hide();
+        $('nav>ul>li>a.intro').show();
         $('nav>ul>li>a.logout').show();
     }
     // DOM트리에서 section객체 찾기
@@ -94,6 +118,10 @@ $(() => {
 
                 ajaxHandler('GET', "./orderlist.html", $sectionObj)
 
+                break;
+
+            case 'intro':
+                location.href='http://192.168.1.22:8888/back/download?id=' + loginedId + '&opt=intro'
                 break;
             default:
                 break;
