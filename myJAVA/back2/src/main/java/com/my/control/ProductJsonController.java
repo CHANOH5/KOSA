@@ -21,11 +21,7 @@ public class ProductJsonController extends ProductController {
 		
 		//응답형식
 		res.setContentType("application/json; charset=utf-8");
-		// CORS문제 해결
-//		res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
-		res.setHeader("Access-Control-Allow-Credentials", "true");
-		
+
 		// 응답 출력스트림 얻기
 		PrintWriter out = res.getWriter();
 		ObjectMapper mapper = new ObjectMapper();

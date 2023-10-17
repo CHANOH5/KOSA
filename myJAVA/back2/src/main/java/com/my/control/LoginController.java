@@ -19,12 +19,11 @@ import com.my.exception.FindException;
 public class LoginController  extends CustomerController {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
 		
-//		res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
-		// 응답형식 지정 -> JSON형태로 할거임
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");	
+		// 헤더 설정
+		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
+//		
 		
 		res.setContentType("application/json; charset=utf-8");
 		
@@ -42,8 +41,8 @@ public class LoginController  extends CustomerController {
 		
 		HttpSession session = req.getSession();
 		//attribute가 있으면 제거할거임
-		session.removeAttribute("loginedId");
 		
+		session.removeAttribute("loginedId");
 		try {
 			
 			service.login(id, pwd);

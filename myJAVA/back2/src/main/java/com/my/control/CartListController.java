@@ -26,10 +26,7 @@ public class CartListController implements Controller {
 		
 		// 서블릿이 응답할 형식 지정하기
 		res.setContentType("application/json;charset=utf-8");
-		// 헤더 설정
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
-		res.setHeader("Access-Control-Allow-Credentials", "true");
-		
+
 		// 응답 출력 스트림 얻기
 		PrintWriter out = res.getWriter();
 		ObjectMapper mapper = new ObjectMapper();

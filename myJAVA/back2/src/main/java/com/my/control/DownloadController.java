@@ -14,11 +14,6 @@ public class DownloadController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
-
-		// CORS 문제 해결
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
-		res.setHeader("Access-Control-Allow-Credentials", "true");
 
 		res.setContentType("application/octet-stream; charset=UTF-8");
 		

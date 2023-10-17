@@ -14,12 +14,7 @@ public abstract class AddCartController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
-		
-		// CORS 문제 해결
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
-		res.setHeader("Access-Control-Allow-Credentials", "true");
-		
+
 		// 1.요청전달 데이터 얻기
 		String prodNo = req.getParameter("prodNo");
 		String quantityStr = req.getParameter("quantity");

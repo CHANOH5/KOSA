@@ -3,24 +3,25 @@ package com.my.product.service;
 import java.util.List;
 
 import com.my.exception.FindException;
-import com.my.product.dao.ProductOracleMybatisRepository;
 import com.my.product.dao.ProductRepository;
+import com.my.product.dto.PageGroup;
 import com.my.product.dto.Product;
-import com.my.util.PageGroup;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductService {
 
 	private ProductRepository repository;
-	
-	private static ProductService service = new ProductService();
-	
-	public ProductService() {
-		repository = new ProductOracleMybatisRepository();
-	}
-	
-	public static ProductService getInstance() {
-		return service;
-	}
+//	public ProductService() {
+//		repository = new ProductOracleMybatisRepository();
+//	}
 	
 	public PageGroup<Product> findAll(int currentPage) throws FindException {
 	

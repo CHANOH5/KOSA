@@ -21,11 +21,6 @@ public class OrderListController extends OrderController {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 	
-//		res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
-		// 응답형식 지정 -> JSON형태로 할거임
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");	
-		res.setHeader("Access-Control-Allow-Credentials", "true");
-		
 		res.setContentType("application/json; charset=utf-8");
 		
 		// 응답출력스트림 얻기

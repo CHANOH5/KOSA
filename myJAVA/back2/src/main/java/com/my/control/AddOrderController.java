@@ -22,10 +22,7 @@ public class AddOrderController extends OrderController {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");//"http://127.0.0.1:5500");
-		res.setHeader("Access-Control-Allow-Credentials", "true");
-		
+
 		res.setContentType("application/json;charset=utf-8");
 		PrintWriter out = res.getWriter();
 		

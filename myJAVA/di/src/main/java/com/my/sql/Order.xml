@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.my.order.orderMapper">
+
+<!-- type에 가공할 것을 넣음 -->
+<resultMap type="orderInfo" id="OrderInfoMap" autoMapping="true" >
+<!-- autoMapping이 되지 못하는 나머지 멤버변수들을 설정 -->
+<!-- lines의 타입이 list라서 collection을 씀 -->
+	<id property="orderNo" column="order_no"/>
+	<collection property="lines" ofType="OrderLine" autoMapping="true">
+		
+		<association property="orderLineNo" column="order_no"/>
+		<association property="orderP" javaType="Product" autoMapping="true"/>
+	
+	</collection>
+</resultMap>
+
+  <!-- 바인드변수(파라미터)가 즉 ?,#{}이 한개면 parameterType 제외가능  -->
+  <!-- resultType은 insert에서 작성하지 않음! select문일때만 resultType작성 -->
+  <insert id="insertInfo" parameterType="string">
+  
+	INSERT INTO order_info(order_no, order_id, order_dt)
+	VALUES (order_seq.NEXTVAL, #{id}, SYSDATE)
+	
+  </insert>
+  
+  <!-- parameterType으로 dto클래스를 줌
+  	   ,confing.xml에서 별칭으로 OrderLine으로 설정함-->
+  <insert id="insertLine" parameterType="OrderLine">
+
+	INSERT INTO order_line(order_line_no, order_prod_no, order_quantity)
+	VALUES (order_seq.CURRVAL, #{orderP.prodNo},  #{orderQuantity})
+
+  </insert>
+  
+  <!-- <select id="selectById" resultType="OrderInfo"> -->
+  <select id="selectById" resultMap="OrderInfoMap">
+
+	SELECT order_no, order_id, order_dt, order_quantity, p.prod_no, prod_name,prod_price
+	FROM order_info info JOIN order_line line ON ( info.order_no = line.order_line_no)
+					JOIN product p ON (line.order_prod_no = p.prod_no)
+	WHERE order_id = #{id}
+	ORDER BY order_dt DESC
+
+  </select>
+  
+</mapper>

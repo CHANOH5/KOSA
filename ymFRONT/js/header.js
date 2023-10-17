@@ -1,3 +1,4 @@
+const bacURL = 'http://192.168.1.22:8888/back2222'
 
 function ajaxHandler(method, u, target) {
     console.log(u)
@@ -44,7 +45,7 @@ $(() => {
             xhrFields: {
                 responseType: "blob",
             },
-            url: 'http://192.168.1.22:8888/back/download',
+            url: bacURL + '/download',
             data: 'id='+loginedId + "&opt=profile",
             success: (responseData)=>{
                 if(responseData.size > 0){
@@ -121,7 +122,7 @@ $(() => {
                 break;
 
             case 'intro':
-                location.href='http://192.168.1.22:8888/back/download?id=' + loginedId + '&opt=intro'
+                location.href= bacURL + '/download?id=' + loginedId + '&opt=intro'
                 break;
             default:
                 break;
