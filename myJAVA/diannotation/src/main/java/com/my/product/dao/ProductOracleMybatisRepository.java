@@ -8,6 +8,9 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 
 import com.my.product.dto.Product;
 
@@ -16,21 +19,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-//@Getter
-//@Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
+@Repository(value = "productDAO")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductOracleMybatisRepository implements ProductRepository {
 
 	// 멤버변수
+	@Autowired
+	@Qualifier(value = "sqlSessionFactory84")
 	private SqlSessionFactory sqlSessionFactory;
-	public ProductOracleMybatisRepository() {
-		System.out.println("in ProductOracleMybatisRepository()");
-	}
-	public void setSqlSessionFactory( SqlSessionFactory sqlSessionFactory) {
-		System.out.println("in set");
-		this.sqlSessionFactory = sqlSessionFactory;
-	}
+
 	@Override
 	public List<Product> selectAll(int startRow, int endRow) throws FindException {
 
