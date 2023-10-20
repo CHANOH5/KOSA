@@ -28,7 +28,7 @@ public class ProductOracleMybatisRepository implements ProductRepository {
 
 	// 멤버변수
 	@Autowired
-	@Qualifier(value = "sqlSessionFactory84")
+	@Qualifier(value = "sqlSessionFactory")
 	private SqlSessionFactory sqlSessionFactory;
 
 	@Override

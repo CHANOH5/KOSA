@@ -10,29 +10,28 @@ $(() =>{
 
     $('form').submit((e)=>{
 
-        alert("ajax-0")
+        // alert("ajax-0")
 
         if($('input[type=checkbox]').prop('checked')){
             localStorage.setItem('savedId', $('input[name=id]').val())
         }else{
             localStorage.removeItem('savedId')
         }
-        alert("ajax-1")
+        // alert("ajax-1")
         const idValue = $('input[name=id]').val()
-        alert("ajax-2")
+        // alert("ajax-2")
         const pwdValue = $('input[name=pwd]').val()
 
-        alert("ajax-3")
+        // alert("ajax-3")
         const idpwddata = `id=${idValue}&pwd=${pwdValue}`
         alert(idpwddata);
 
-        alert("ajax-4")
+        // alert("ajax-4")
         $.ajax({
             xhrFields: {
                 withCredentials: true
             },
-
-            url : 'http://192.168.1.22:8888/back/login',
+            url : 'http://192.168.1.22:8888/backspring/login',
             method : 'post',
             data : idpwddata, 
             success : (responseJSONObj)=>{ // 요청이 완료되고 응답이 성공적으로 됐을때 할 일

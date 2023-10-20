@@ -2,7 +2,7 @@ $(() => {
     console.log(location.search); // ?prodno=C0001
     const queryStr = location.search.substr(1) // prodno=C0001
     $.ajax({
-        url : "http://localhost:8888/back/productjson",
+        url : "http://192.168.1.22:8888/backspring/productjson",
         method : 'get',
         data : queryStr,
         success : (responseJSONObj) => {
@@ -38,7 +38,7 @@ $(() => {
             xhrFields: {
                 withCredentials: true
              },
-            url: 'http://192.168.1.22:8888/back/addcart',//'http://localhost:8888/back/addcart',
+            url: 'http://192.168.1.22:8888/backspring/addcart',//'http://localhost:8888/back/addcart',
             method : 'get',
             data : `prodNo=${prodno}&quantity=${quantity}`,
             success: ()=>{

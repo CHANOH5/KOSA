@@ -1,15 +1,17 @@
 package control;
 
 import java.lang.module.FindException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.my.util.PageGroup;
 import com.my.product.dto.Product;
 import com.my.product.service.ProductService;
+import com.my.util.PageGroup;
 
 @RestController
 public class ProductController {
@@ -32,6 +34,20 @@ public class ProductController {
 		} // try-catch 
 		
 	} // list
+	
+	@GetMapping("/productjson")
+	public Product productjson(@RequestParam(name="prodno") String prodno) {
+
+		try {			
+			Product p = service.findByProdNo(prodno);
+			return p;
+		} catch (FindException e) {
+			e.printStackTrace();
+			Map<String, Object> map = new HashMap<>();
+			map.put("msg", e.getMessage());
+		} // try-catch
+		return null;
+	} //productjson()
 	
 	
 } // end class

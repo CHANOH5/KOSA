@@ -29,7 +29,7 @@ $(() => {
             xhrFields: {
                 withCredentials: true
             },
-            url: 'http://192.168.1.22:8888/back/iddupchk',
+            url: 'http://192.168.1.22:8888/backspring/iddupchk',
             method: 'get',
             data: `id=${$idObj.val()}`,
             success: (responseJSONObj) => {
@@ -75,7 +75,7 @@ $(() => {
                 xhrFields: {
                     withCredentials: true
                 },
-                url: 'http://192.168.1.22:8888/back/signup',
+                url: 'http://192.168.1.22:8888/backspring/signup',
                 method: 'post',
                 contentType: false, // ajax 이용시 파일 첨부에 필요한 property
                 processData: false, // ajax 이용시 파일 첨부에 필요한 property
@@ -124,7 +124,7 @@ $(() => {
             })
 
             $.ajax({
-                url: 'http://192.168.1.22:8888/back/upload',
+                url: 'http://192.168.1.22:8888/backspring/upload',
                 method: 'post',
                 contentType: false, // ajax 이용시 파일 첨부에 필요한 property
                 processData: false, // ajax 이용시 파일 첨부에 필요한 property
@@ -146,7 +146,7 @@ $(() => {
                     // withCredentials: true,
                     responseType: "blob",
                 },
-                url: 'http://192.168.1.22:8888/back/download',
+                url: 'http://192.168.1.22:8888/backspring/download',
                 data: 'id=dd4',
                 success: (responseData) => {
                     console.log(responseData);

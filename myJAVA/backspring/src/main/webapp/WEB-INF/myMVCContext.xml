@@ -20,5 +20,23 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 	<!-- json형식으로 응답하기 위함 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 
+	<!-- 파일업로드용 설정파일 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 		<property name="defaultEncoding" value="UTF-8"/>
+ 		<property name="maxUploadSize" value="102400"/> <!-- 파일들이 총 합쳐져서 업로드될 사이즈 -->
+ 		<property name="maxUploadSizePerFile" value="102400"/> <!-- 파일이 업로드될 사이즈 -->
+ 	</bean>
+ 	
+ 	<!-- CORS 문제 해결 -->
+ 	<mvc:cors>
+ 		<mvc:mapping path="/**"
+ 					 allow-credentials="true"
+ 					 allowed-origins="http://192.168.1.22:5500"/>
+ 					 			  <!-- http://192.168.1.84:8888/a,
+ 									   http://192.168.1.84:8888/a/b
+ 									   /** 의 뜻은 하위경로 모두  
+ 								    -->
+ 	</mvc:cors>
+
 </beans>
 

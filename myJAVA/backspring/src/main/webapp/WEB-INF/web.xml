@@ -9,6 +9,7 @@ id="WebApp_ID" version="4.0">
 <listener>
 	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 </listener>
+
 <context-param>
 	<param-name>contextConfigLocation</param-name>
 	<param-value>/WEB-INF/spring/myApplicationContext.xml</param-value>
@@ -21,7 +22,6 @@ id="WebApp_ID" version="4.0">
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/myMVCContext.xml</param-value>
 	</init-param>
-
 </servlet>
 
 <servlet-mapping>

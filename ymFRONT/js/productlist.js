@@ -2,7 +2,7 @@ $(()=> {
     function ajaxHandler(cp) {
 
         $.ajax({
-            url : 'http://localhost:8888/back/productlistjson',
+            url : 'http://localhost:8888/backspring/productlistjson',
             method : 'get',
             data: `currentPage=${cp}`,
             success : (responseJSONObj) => {
