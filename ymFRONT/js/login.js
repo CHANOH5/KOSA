@@ -31,7 +31,7 @@ $(() =>{
             xhrFields: {
                 withCredentials: true
             },
-            url : 'http://192.168.1.22:8888/backspring/login',
+            url : 'http://192.168.1.22:8888/backspringconfiguration/login',
             method : 'post',
             data : idpwddata, 
             success : (responseJSONObj)=>{ // 요청이 완료되고 응답이 성공적으로 됐을때 할 일

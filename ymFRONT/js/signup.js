@@ -29,7 +29,7 @@ $(() => {
             xhrFields: {
                 withCredentials: true
             },
-            url: 'http://192.168.1.22:8888/backspring/iddupchk',
+            url: 'http://192.168.1.22:8888/backspringconfiguration/iddupchk',
             method: 'get',
             data: `id=${$idObj.val()}`,
             success: (responseJSONObj) => {
@@ -75,7 +75,7 @@ $(() => {
                 xhrFields: {
                     withCredentials: true
                 },
-                url: 'http://192.168.1.22:8888/backspring/signup',
+                url: 'http://192.168.1.22:8888/backspringconfiguration/signup',
                 method: 'post',
                 contentType: false, // ajax 이용시 파일 첨부에 필요한 property
                 processData: false, // ajax 이용시 파일 첨부에 필요한 property
@@ -94,8 +94,9 @@ $(() => {
                         location.href = './main.html'
                     }
                 },
-                error: (jqxhr) => {
+                error: (jqxhr, responseJSONObj) => {
                     alert(jqxhr.status) // 정상처리가 되지 않으면 status = 0
+                    alert(responseJSONObj.msg);
                 }
             })
 
@@ -124,7 +125,7 @@ $(() => {
             })
 
             $.ajax({
-                url: 'http://192.168.1.22:8888/backspring/upload',
+                url: 'http://192.168.1.22:8888/backspringconfiguration/upload',
                 method: 'post',
                 contentType: false, // ajax 이용시 파일 첨부에 필요한 property
                 processData: false, // ajax 이용시 파일 첨부에 필요한 property
@@ -146,7 +147,7 @@ $(() => {
                     // withCredentials: true,
                     responseType: "blob",
                 },
-                url: 'http://192.168.1.22:8888/backspring/download',
+                url: 'http://192.168.1.22:8888/backspringconfiguration/download',
                 data: 'id=dd4',
                 success: (responseData) => {
                     console.log(responseData);

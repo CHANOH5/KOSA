@@ -10,6 +10,7 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 
 	<!-- base-package의 어노테이션을 읽어서 스프링빈으로 등록 -->
 	<context:component-scan base-package="control"></context:component-scan>
+	<context:component-scan base-package="advice"/>
 
 	<bean id="viewResolver"
 		  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,8 +24,8 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
 	<!-- 파일업로드용 설정파일 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
  		<property name="defaultEncoding" value="UTF-8"/>
- 		<property name="maxUploadSize" value="102400"/> <!-- 파일들이 총 합쳐져서 업로드될 사이즈 -->
- 		<property name="maxUploadSizePerFile" value="102400"/> <!-- 파일이 업로드될 사이즈 -->
+ 		<property name="maxUploadSize" value="1024"/> <!-- 파일들이 총 합쳐져서 업로드될 사이즈 -->
+ 		<property name="maxUploadSizePerFile" value="1024"/> <!-- 파일이 업로드될 사이즈 -->
  	</bean>
  	
  	<!-- CORS 문제 해결 -->

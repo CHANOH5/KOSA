@@ -1,4 +1,4 @@
-const bacURL = 'http://192.168.1.22:8888/backspring'
+const bacURL = 'http://192.168.1.22:8888/backspringconfiguration'
 
 function ajaxHandler(method, u, target) {
     console.log(u)
@@ -98,7 +98,7 @@ $(() => {
                     xhrFields: {
                         withCredentials: true 
                     },
-                    url: 'http://192.168.1.22:8888/backspring/logout',
+                    url: 'http://192.168.1.22:8888/backspringconfiguration/logout',
                     success: () => {
                         localStorage.removeItem('loginedId')
                         location.href='./main.html'
