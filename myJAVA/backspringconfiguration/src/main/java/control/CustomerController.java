@@ -134,20 +134,26 @@ public class CustomerController {
 	} // logout
 	
 	@GetMapping("/iddupchk")
-	public Map<String, Object> iddupchk(String id) {
-
-		Map<String, Object> map = new HashMap<>();
+//	public Map<String, Object> iddupchk(String id) {
+	public ResponseEntity<?> iddupchk(String id) {
+//		Map<String, Object> map = new HashMap<>();
 
 		try {
 			service.idDupChk(id);
 			// 고객이 있는 경우
-			map.put("status", 0);
+//			map.put("status", 0);
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Type", "text/html;charset=UTF-8");
+			return new ResponseEntity<>("이미 사용중인 아이디 입니다ㅠ",
+										headers,
+										HttpStatus.BAD_REQUEST);
 		} catch (FindException e) {
 			// 고객이 없는 경우
-			map.put("status", 1);
+//			map.put("status", 1);
+			return new ResponseEntity<>(HttpStatus.OK);
 		} // try-catch
 		
-		return map;
+//		return map;
 		
 	} // iddupchk
 	

@@ -32,17 +32,21 @@ $(() => {
             url: 'http://192.168.1.22:8888/backspringconfiguration/iddupchk',
             method: 'get',
             data: `id=${$idObj.val()}`,
-            success: (responseJSONObj) => {
-                if (responseJSONObj.status == 0) {
-                    alert('이미 사용중인 아이디입니다')
-                } else {
-                    alert('사용가능한 아이디입니다')
-                    // btSignupObj.style.display = 'inline-block'
-                    $btSignupObj.show()
-                } // if-else
+            // success: (responseJSONObj) => {
+                // if (responseJSONObj.status == 0) {
+                //     alert('이미 사용중인 아이디입니다')
+                // } else {
+                //     alert('사용가능한 아이디입니다')
+                //     // btSignupObj.style.display = 'inline-block'
+                //     $btSignupObj.show()
+                // } // if-else
+            success: () => {
+                $btSignupObj.show()
             },
             error: (jqxhr) => {
-                alert(jqxhr.status) // 정상처리가 되지 않으면 status = 0
+                // alert(jqxhr.status) // 정상처리가 되지 않으면 status = 0
+                alert(jqxhr.responseText)
+                $idObj.select()
             }
         })
     }) // .click()

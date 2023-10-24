@@ -14,6 +14,13 @@
 		    <version>5.3.30</version>
 		</dependency>
 		
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>5.3.30</version>
+		    <scope>test</scope>
+		</dependency>
+	
 		<!-- lombok -->
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
@@ -98,6 +105,13 @@
 		    <groupId>net.coobird</groupId>
 		    <artifactId>thumbnailator</artifactId>
 		    <version>0.4.20</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-api</artifactId>
+		    <version>5.10.0</version>
+		    <scope>test</scope>
 		</dependency>
 
 	</dependencies>

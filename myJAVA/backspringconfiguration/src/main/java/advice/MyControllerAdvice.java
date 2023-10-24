@@ -29,13 +29,13 @@ public class MyControllerAdvice {
 	}
 	
 	
-//	@ExceptionHandler(Exception.class)
-//	@ResponseBody
-//	public Map<String, Object> exceptionHandler(Exception e){
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("status", 0);
-//		map.put("msg", e.getMessage());
-//		return map;
-//	}
+	@ExceptionHandler(Exception.class)
+	@ResponseBody
+	public Map<String, Object> exceptionHandler(Exception e){
+		Map<String, Object> map = new HashMap<>();
+		map.put("status", 0);
+		map.put("msg", e.getMessage());
+		return map;
+	}
 	
 }
