@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.my.board.BoardMapper">
+
+	<resultMap type="Board" id="BoardMap" autoMapping="true">
+		<id property="boardNo" column="board_no"/>
+		<collection property="replies" ofType="Reply" autoMapping="true"></collection> 	
+	</resultMap>
+
+	<!-- 게시글 목록 -->
+	<!-- 게시글에 대한 타입이 반환되기 때문에 resultType을 board로 줌 -->
+	<select id="selectAll" resultType="Board">
+		SELECT b.*, 
+		     (SELECT COUNT(*) FROM board_reply WHERE reply_board_no=b.board_no) replycnt 
+		FROM board b
+		ORDER BY board_no DESC
+	</select>
+	
+	<!-- 게시글 상세 -->
+	<!-- 파라미터타입을 int타입으로 받아서 boardNo에 대입 -->
+	<select id="selectBoardNo" parameterType="int" resultMap="BoardMap">
+		SELECT *
+		FROM board b LEFT JOIN 
+			(SELECT level,r1.* FROM board_reply r1 START WITH reply_parent_no IS NULL CONNECT BY PRIOR reply_no =  reply_parent_no 
+			 ORDER SIBLINGS BY reply_no DESC)r
+		ON b.board_no = r.reply_board_no
+		WHERE board_no = #{boardNo}
+	</select>
+	
+	<insert id="insert" parameterType="hashMap">
+		INSERT INTO board(board_no, board_title, board_content, board_id)
+		VALUES(board_seq.NEXTVAL, #{boardTitle}, #{boardContent}, #{boardId})
+	</insert>
+	
+	<update id="update" parameterType="Board">
+		UPDATE board
+		SET board_content = #{boardContent}
+		WHERE board_no = #{boardNo}
+	</update>
+	
+	<delete id="delete" parameterType="board">
+		DELETE FROM board
+		WHERE board_no = #{boardNo}
+	</delete>
+	
+
+</mapper>
