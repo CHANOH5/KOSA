@@ -7,8 +7,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.my.board.dto.Board;
+import com.my.board.dto.Reply;
 import com.my.exception.AddException;
 import com.my.exception.FindException;
 import com.my.exception.ModifyException;
@@ -61,12 +63,13 @@ class BoardRepositoryTest {
 	
 	@Test
 	@DisplayName("testinsert()")
+	@Transactional
 	void testinsert() throws AddException {
 		
 		Board board = new Board();
 		
-		board.setBoardTitle("테스트제목1");
-		board.setBoardContent("테스트내용1");
+		board.setBoardTitle("테스트제목3");
+		board.setBoardContent("테스트내용3");
 		board.setBoardId("C");
 		
 		try {
@@ -77,24 +80,6 @@ class BoardRepositoryTest {
 		} // try-catch
 
 	}// testinsert
-	
-//	@Test
-//	@DisplayName("testinsertOptional()")
-//	void testInsertOptional() throws AddException {
-//		
-//		Board data =
-//		
-//
-//		Board board = repository.insert(board);
-//		
-//		
-//		Assertions.assertNotNull(board);
-//		
-//		Assertions.assertThrows(FindException.class, ()->{
-//			repository.insertOptional(board);
-//		});
-//		
-//	}
 	
 	@Test
 	@DisplayName("testupdate()")
@@ -128,5 +113,78 @@ class BoardRepositoryTest {
 		} // try-catch
 
 	}// testdelete
+	
+	// ==================== 답글 ========================
+	
+	@Test
+	@DisplayName("testinsertReply()")
+	@Transactional
+	void testinsertReply() throws AddException {
+
+		Board board = new Board();
+		Reply reply = new Reply();
+
+		board.setBoardNo(1); 
+		
+		Integer boardNo = board.getBoardNo();
+		
+		// 답글
+		reply.setReplyParentNo(null);
+		reply.setReplyContent("답글테스트~~~ㅎㅎ1");
+		reply.setReplyId("C");
+		
+		// 답글의 답글
+//		reply.setReplyBoardNo(7);
+//		reply.setReplyParentNo(1);
+//		reply.setReplyContent("답글테스트~~~1");
+//		reply.setReplyId("C");
+		
+		try {
+			repository.insertReply(boardNo, reply);
+			System.out.println("답글 등록 완료");
+		} catch (AddException e) {
+			System.out.println("답글 등록 실패");
+		} // try-catch
+
+	}// testinsertReply
+	
+	@Test
+	@DisplayName("testupdateReply()")
+	@Transactional
+	void testupdateReply() throws ModifyException {
+		
+		Reply reply = new Reply();
+		
+		reply.setReplyNo(6);
+		reply.setReplyContent("답글 수정테스트 해볼겐요~");
+		
+		try {
+			repository.updateReply(reply);
+			System.out.println("답글 수정 완료");
+		} catch (ModifyException e) {
+			System.out.println("답글 수정 실패");
+		} // try-catch
+
+	}// testupdateReply
+	
+	@Test
+	@DisplayName("testdeleteReply()")
+	@Transactional
+	void testdeleteReply() throws RemoveException {
+
+		Integer replyNo = 14;
+		
+		// null이면 예외 발생
+		Assertions.assertNotNull(replyNo);
+
+		// 예외가 발생하지 않았다면 코드는 여전히 실행되지만,
+		// 테스트 결과에서 실패로 표시됩니다.
+		Assertions.assertThrows(RemoveException.class, ()->{
+			repository.deleteReply(replyNo);
+		});
+		
+		// 예외발생하면 console에서 뜨고 junit테스트는 성공!
+	}// testdeleteReply
+	
 
 } // end class

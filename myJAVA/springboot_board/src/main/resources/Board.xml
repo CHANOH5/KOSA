@@ -41,10 +41,25 @@
 		WHERE board_no = #{boardNo}
 	</update>
 	
-	<delete id="delete" parameterType="board">
+	<delete id="delete" parameterType="Integer">
 		DELETE FROM board
 		WHERE board_no = #{boardNo}
 	</delete>
 	
+	<insert id="reply" parameterType="hashMap">
+		INSERT INTO board_reply (reply_no, reply_board_no, reply_parent_no, reply_content, reply_id)
+		VALUES (reply_seq.NEXTVAL, #{replyBoardNo}, #{replyParentNo}, #{replyContent}, #{replyId})	
+	</insert>
+	
+	<update id="updateReply" parameterType="Reply">
+		UPDATE board_reply
+		SET reply_content = #{replyContent}
+		WHERE reply_no = #{replyNo}
+	</update>
+	
+	<delete id="deleteReply" parameterType="Integer">
+		DELETE board_reply
+		WHERE reply_no = #{replyNo}
+	</delete>
 
 </mapper>

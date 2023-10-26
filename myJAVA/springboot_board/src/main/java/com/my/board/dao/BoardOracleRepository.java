@@ -8,10 +8,10 @@ import java.util.Optional;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.my.board.dto.Board;
+import com.my.board.dto.Reply;
 import com.my.exception.AddException;
 import com.my.exception.FindException;
 import com.my.exception.ModifyException;
@@ -108,7 +108,7 @@ public class BoardOracleRepository {
 			map.put("boardId", board.getBoardId());
 
 			session.insert("com.my.board.BoardMapper.insert", map);
-			session.commit();
+
 		}catch(Exception e) {
 			e.printStackTrace();
 			throw new AddException(e.getMessage());
@@ -155,8 +155,7 @@ public class BoardOracleRepository {
 			map.put("boardContent", board.getBoardContent());
 			
 			session.update("com.my.board.BoardMapper.update", map);
-			
-			session.commit();
+
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new ModifyException(e.getMessage());
@@ -178,8 +177,7 @@ public class BoardOracleRepository {
 			session = sqlSessionFactory.openSession();
 			
 			session.delete("com.my.board.BoardMapper.delete", boardNo);
-			
-			session.commit();
+
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new RemoveException(e.getMessage());
@@ -192,5 +190,85 @@ public class BoardOracleRepository {
 		return null;
 	} // delete
 	
+	// ======================== 답글 =========================
 	
+	public void insertReply(Integer boardNo, Reply reply) throws AddException {
+		
+		SqlSession session = null;
+		Map<String, Object> map = new HashMap<>();
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			
+			map.put("replyBoardNo", boardNo);
+			map.put("replyParentNo", reply.getReplyParentNo());
+			map.put("replyContent", reply.getReplyContent());
+			map.put("replyId", reply.getReplyId());
+			
+			session.delete("com.my.board.BoardMapper.reply", map);
+
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new AddException(e.getMessage());
+		} finally {
+			if(session != null) {
+				session.close();
+			}
+		} // try-catch-finally
+
+	} // insertReply
+	
+	public void updateReply(Reply reply) throws ModifyException {
+		
+		SqlSession session = null;
+		
+		Map<String, Object> map =new HashMap();
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			
+			map.put("replyNo", reply.getReplyNo());
+			map.put("replyContent", reply.getReplyContent());
+			
+			int rowcnt = session.update("com.my.board.BoardMapper.updateReply", map);
+			
+			if(rowcnt == 0) {
+				throw new RemoveException("수정실패: 답글이 없습니다");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new ModifyException(e.getMessage());
+		} finally {
+			if(session != null) {
+				session.close();
+			}
+		} // try-catch-finally
+		
+	} // updateReply
+	
+	public void deleteReply(Integer replyNo) throws RemoveException {
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			
+			int rowcnt = session.delete("com.my.board.BoardMapper.deleteReply", replyNo);
+			
+			if(rowcnt == 0) {
+				throw new RemoveException("삭제실패: 답글이 없습니다");
+			}
+
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new RemoveException(e.getMessage());
+		} finally {
+			if(session != null) {
+				session.close();
+			}
+		} // try-catch-finally
+	
+	} // deleteReply
+
 } // end class
