@@ -19,7 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @ExtendWith(SpringExtension.class) //스프링용 단위테스트
 @ContextConfiguration(classes = {config.MyApplicationContext.class,
-								 config.MyMVCContext.class})
+								 com.my.board.config.MyMVCContext.class})
 @WebAppConfiguration // WebApplicationContext 생성
 class CustomerControllerTest {
 
