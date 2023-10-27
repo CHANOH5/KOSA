@@ -1,0 +1,41 @@
+body{
+
+}
+div {
+    width: 100%;
+    display: inline-block;
+}
+td {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+    /* border: 1px solid #444444; */
+}
+
+table {
+    margin-left: 500px;
+    width: 50%;
+    /*테이블사이 간격 삭제*/
+    border-collapse : collapse;
+    border-radius: 5px;
+
+    position: relative; 
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    margin-bottom: 10px;
+}
+.boardlist {
+    margin-top: 300px;
+    margin-left: 20px;
+
+    width: 90%;
+
+    /* color: pink; */
+    /* background-color: whitesmoke; */
+}
+button {
+    margin-left: 77%;
+    background-color: bisque;
+    color: palevioletred;
+    border-radius: 5px;
+
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+}
