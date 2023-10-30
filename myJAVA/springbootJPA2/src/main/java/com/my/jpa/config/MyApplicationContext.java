@@ -43,14 +43,16 @@ public class MyApplicationContext {
 		return new HikariDataSource(hikariConfig());
 	} // HikariDataSource
 	
-	@Bean
-	public DataSourceTransactionManager transactionManager() throws Exception {
-		
-		DataSourceTransactionManager tx = new DataSourceTransactionManager();
-		tx.setDataSource(hikariDataSource());
-		
-		return tx;
-
-	} // transactionManager
+	// 마이바티스 쓸 때 트랜잭션매니져의 도움을 받았지만
+	// JPA의 도움을 받아서 쓸거임
+//	@Bean
+//	public DataSourceTransactionManager transactionManager() throws Exception {
+//		
+//		DataSourceTransactionManager tx = new DataSourceTransactionManager();
+//		tx.setDataSource(hikariDataSource());
+//		
+//		return tx;
+//
+//	} // transactionManager
 
 } // end class
