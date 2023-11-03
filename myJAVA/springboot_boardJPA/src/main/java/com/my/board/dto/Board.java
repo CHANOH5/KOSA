@@ -4,8 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.my.board.entity.BoardEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,5 +35,10 @@ public class Board {
 	// 게시글 하나에 여러개의 답글들이 올 수 있기 때문에
 	private List<Reply> replies; // 답글 목록
 	private Integer replycnt; // 답글 갯수
+	
+	public static void VoToDTO() {
+
+	}
+	
 	
 } // end class
