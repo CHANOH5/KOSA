@@ -1,9 +1,11 @@
 package com.my.board.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.my.board.entity.BoardEntity;
 
-public interface BoardRepository extends CrudRepository<BoardEntity, Integer>{
+public interface BoardRepository extends JpaRepository<BoardEntity, Integer>{
+
+//	public BoardEntity findA(BoardEntity b);
 	
 }

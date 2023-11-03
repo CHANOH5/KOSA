@@ -63,13 +63,12 @@ public class BoardEntity {
 	private Date boardDt;
 	
 	// 게시글 하나에 여러개의 답글들이 올 수 있기 때문에
-//	@OneToMany(cascade = CascadeType.ALL,
+//	@OneToMany(cascade = CascadeType.REMOVE,
 //			fetch = FetchType.EAGER
 //			)
 //	@JoinColumn(name="reply_no")
 //	private List<ReplyEntity> replies; // 답글 목록
 //
-//	
 //	@Column(name="replycnt")
 //	private Integer replycnt; // 답글 갯수
 	
