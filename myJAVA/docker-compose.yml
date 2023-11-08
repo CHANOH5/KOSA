@@ -19,6 +19,7 @@ services:
       - database
     environment:
       TZ: "Asia/Seoul"
+      JDBC-URL : "spring.datasource.hikari.jdbc-url=jdbc:log4jdbc:oracle:thin:@condb:1521:xe"
     ports:
       - "8883:9993"
     networks:

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>첫번째 Veu 실습</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <div>{{message}}</div>
+        <hr>
+        <div>{{name}}</div>
+    </div>
+    <script src="http://unpkg.com/vue"></script>
+    <script>
+        let model = {message: '찬돌짱'}
+        let vm = Vue.createApp({
+            name: "App",
+            data() {
+                // return model
+                return {
+                    message: '찬돌짱',
+                    name: '찬돌'
+                }
+            }
+        }).mount('#app') // div영역의 속성값을 찾아옴
+    </script>
+</body>
+</html>

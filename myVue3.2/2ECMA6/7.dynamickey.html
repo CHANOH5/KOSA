@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <script>
+            let lion = {}
+            lion.first_name = 'Mufasa'
+            //js의 사용가능특수문자: _, $
+            //lion.last-name = 'King' //error
+            
+            lion['last-name'] = 'King' //OK
+            console.log(lion.first_name + ", " + lion['last-name'])
+        
+            let prop = 'category'
+            let lion2 = {
+                first_name : 'Simba',
+                'last-name': 'King',
+                [prop] : 'animal' 
+            }
+            console.log(lion2)
+        </script>
+    </head>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+    <script>
+        //배열 및 객체 분해
+        // 배열을 분해하기 위해서는 []괄호로 분해
+        const fruits = ["Mango", "Pineapple", "Orange", "Lemon", "Apple"];
+        // f1, f2, f3을 한꺼번에 선언함
+        const [f1, f2, f3] = fruits
+        console.log(f1, f2, f3)
+        //일부 반환값 무시하기
+        const [, , , f4, f5] = fruits
+        console.log(f4, f5)
+        
+        const Susan = {
+            firstName: "Susan",
+            lastName: "Steward",
+            age: 14,
+            hobbies: [
+                "singing",
+                "dancing"
+            ],
+            contact: {
+                phone: 114,
+                email: "a@b.com"
+            },
+            
+        };
+        // Susan 객체를 분해하기
+        // 객체를 분해하기 위해서는 중괄호{} 사용
+        const {firstName, age} = Susan
+        console.log(firstName, age)
+
+        const {firstName: fn, age:a} = Susan
+        console.log(fn, a)
+
+        const {lastName, address = 'NY'} = Susan
+        console.log(lastName, address)
+
+        const {hobbies, hobbies:[h0, h1]} = Susan
+        console.log(hobbies)
+        console.log(h0, h1)
+
+        const {contact:{email}} = Susan
+        console.log(email)        
+    </script>
+</head>
+
+</html>
