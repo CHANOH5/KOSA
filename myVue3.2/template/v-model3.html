@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model3.html</title>
+</head>
+<body>
+    <div id="app">
+        보간법으로 가져온 이름 : {{name}}
+        <hr>
+        <!-- 바인딩 -->
+        <input :value="name" type="text">
+        <hr>
+        <!-- 입력한 값이 model에 대입되도록 하기 (양방향) -->
+        <!-- name property가 바뀌면 보간법,단방향에도 반영이 됨 -->
+        <input type="text" v-model="name">
+    </div>
+
+    <script src="http://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            name: "App",
+            data(){
+                return {
+                    // model부분
+                    name: "찬돌",
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

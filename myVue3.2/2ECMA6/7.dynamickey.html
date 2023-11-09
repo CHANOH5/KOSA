@@ -5,7 +5,8 @@
             lion.first_name = 'Mufasa'
             //js의 사용가능특수문자: _, $
             //lion.last-name = 'King' //error
-            
+           
+            // 해닫 객체의 속성임을 알림 ['']
             lion['last-name'] = 'King' //OK
             console.log(lion.first_name + ", " + lion['last-name'])
         
@@ -13,6 +14,7 @@
             let lion2 = {
                 first_name : 'Simba',
                 'last-name': 'King',
+                // 동적으로 바뀔 수 있는 property가 되려면 []사용
                 [prop] : 'animal' 
             }
             console.log(lion2)

@@ -14,10 +14,17 @@ import com.my.exception.FindException;
 import com.my.product.dto.Product;
 
 public class ProductJsonController extends ProductController {
+	
 
 	// ProductController 부모의 메서드를 상속받아서 service를 사용할 수 있음
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
+		try {
+			Thread.sleep(10*1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		//응답형식
 		res.setContentType("application/json; charset=utf-8");

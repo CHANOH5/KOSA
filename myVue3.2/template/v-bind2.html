@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind2.html</title>
+</head>
+<body>
+    <!-- {{}}는 v-text또는 v-html디렉티브와 같다 -->
+    <!-- 요소의 속성값에 바인딩 할 때는 v-bind디렉티브를 써야한다 -->
+    <div id="app">
+        <img src="{{imgPath}}">
+        <img v-bind:src="imgPath">
+        <img :src="imgPath">
+    </div>
+
+    <script src="http://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            name: "App",
+            data(){
+                return {
+                    imgPath: "../images/logo.png"
+                }
+            }
+        }).mount('#app')
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model4.html</title>
+</head>
+<body>
+    <div id="app">
+        <img v-show=" amount < 0 " src="../images/logo.png">
+    </div>
+
+    <script src="http://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            name: "App",
+            data(){
+                return {
+                    // amount : -10
+                    amount : 10
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if.html</title>
+</head>
+<body>
+    <div id="app">
+        <img v-if=" amount < 0 " src="../images/logo.png">
+        <span v-else-if="amount>=1000">천만원이상</span>
+        <span v-else-if="amount>=500">오백만원이상</span>
+        <span v-else>{{amount}}원</span>
+
+        <br>
+        <input type="text" v-model="amount">
+    </div>
+
+    <script src="http://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            name: "App",
+            data(){
+                return {
+                    // amount : -10
+                    amount : 300
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

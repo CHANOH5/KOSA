@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>watchProperty3.html</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="currentPage">
+
+        <hr>
+        <!-- {{ajaxTest()}} 10초동안 기다렸다가 결과 받음 -->
+        <hr>
+        {{products}}
+        <table>
+            <thead>
+                <tr>상품번호</tr><tr>상품이름</tr>
+            </thead>
+            <tbody>
+                <tr v-for="p in products">
+                    <td>{{p.prodNo}}</td>
+                    <td>{{p.prodName}}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <hr>
+        {{flag}}
+    </div>
+
+    <script src="http://unpkg.com/vue"></script>
+    <script src="http://unpkg.com/axios"></script>
+    <script>
+        let vm = Vue.createApp({
+            name: "App",
+            data() {
+                return {     
+                    currentPage: '',               
+                    products:[],
+                    flag: false
+                }
+            },
+            /* delay 걸리는 경우 methods나 computed를 사용하지 않고 watch를 사용함!!*/
+            methods:{
+                ajaxTest(){
+                    let url = `http://localhost:8888/back2/productlistjson?currentPage=${this.currentPage}`
+                    axios
+                    .get(url)
+                    .then((response)=>{
+                        console.log(response.data)
+                        this.products= response.data.list
+                        this.flag = true
+                    })
+                }
+            },
+            watch:{
+                currentPage(newdata, olddata){
+                    console.log("changed")
+                    if(newdata >= 1 ){
+                        this.ajaxTest()
+                    } else {
+                        products  = []
+                    }
+                }
+                // ajaxTest(){
+                //     axios
+                //     .get("http://localhost:8888/back2/productlistjson")
+                //     .then((response)=>{
+                //         console.log(response.data)
+                //         this.products= response.data.list
+                //         this.flag = true
+                //     })
+                // }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

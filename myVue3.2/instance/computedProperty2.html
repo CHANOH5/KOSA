@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>computedProperty2.html</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.number="num">
+        <hr>
+        숫자: {{num}} <br>
+        1~{{num}} 합:  
+        <br> {{calc}}
+        <br> {{calc}}
+        <br> {{calc}}
+
+    </div>
+
+    <script src="http://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            name: "App",
+            data(){
+                return {
+                    sum: 0,
+                    num: 0
+                }
+            },
+            computed:{
+                calc() {
+                    console.log("computed() invoked")
+
+                    let n = Number(this.num)
+
+                    if(Number.isNaN(n)) {
+                        return "숫자를 입력해주세요"
+                    } else {
+                        return (n * (n+1)) / 2
+                    }
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>첫번째 Veu 실습</title>
+    <title>v-text1.html</title>
+
 </head>
 <body>
     <div id="app">
-        <h2>{{message}}</h2>
-        <div>{{message}}</div>
+        {{message}}
         <hr>
-        <!-- <div>{{name}}</div> -->
+        <h2>{{message}}</h2>
+        <h1 v-text="message"></h1>
+        <h1 v-html="message2"></h1>
     </div>
+
     <script src="http://unpkg.com/vue"></script>
     <script>
-        let model = {message: '찬돌짱'}
+        const model = {message: "WELCOME", message2: '<a href="#">test</a>'}
         let vm = Vue.createApp({
             name: "App",
             data() {
                 return model
-                // return {
-                //     message: '찬돌짱',
-                //     name: '찬돌'
-                // }
             }
-        }).mount('#app') // div영역의 속성값을 찾아옴
+        }).mount('#app')
     </script>
 </body>
 </html>

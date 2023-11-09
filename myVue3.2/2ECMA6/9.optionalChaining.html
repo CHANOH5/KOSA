@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <script>
+        let users = [
+            {
+                name: 'Sam',
+                address: 'NY',
+                contact: {
+                    phone: 114,
+                    email: "a@b.com"
+                }
+            },
+            {
+                name: "Dave"
+            },
+            {
+                name: 'Jacob',
+                address: 'LA',
+                contact: {
+                    phone: 112
+                }
+            },
+        ]
+
+        users.forEach((user) => {
+            console.log(user.address) //NY undefined LA
+        })
+
+        // contact을 갖고있는 index도있고 없는 index도 있음
+        // 그래서 일반 반복문을 이용하면 contact가 없는 것은 undefined로 찾게되고
+        // undefined 때문에 error발생
+        // users.forEach((user) => {
+        //    console.log(user.contact.email) //a@b.com TypeError: Cannot read properties of undefined (reading 'email')
+        // })
+
+        users.forEach((user) => {
+            console.log(user.contact ?.email) //a@b.com undefined undefined
+        })
+    </script>
+</head>
+
+</html>

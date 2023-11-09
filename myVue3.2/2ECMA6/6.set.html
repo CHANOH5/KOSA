@@ -11,6 +11,7 @@
             ]
             let category = animal2.map((a)=> a.category)
             console.log(category)// ['bird', 'bird', 'fish', 'insect', 'insect']
+            
             category = new Set(animal2.map((a)=> a.category))
             console.log(category)// {'bird', 'fish', 'insect'}
             console.log([...category]) //['bird', 'fish', 'insect']

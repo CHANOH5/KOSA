@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model4.html</title>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" value="java"  v-model="skill"> JAVA
+        <input type="checkbox" value="html5" v-model="skill"> HTML5
+        <input type="checkbox" value="vue"   v-model="skill"> Vue.js
+        <hr>
+        {{skill}}
+        <hr>
+        <!-- 배열의 join함수를 활용해서 , 로 나열하기 (초기값이 없으면 빈 문자열)-->
+        {{skill.join(', ')}}
+
+        <hr>
+        <select v-model="occ">
+            <option value="">직군을 선택하세요</option>
+            <option value="dev">개발</option>
+            <option value="sal">영업</option>
+            <option value="inf">기획</option>
+        </select>
+        {{occ}}
+        <div>
+            동의하시겠습니까? <input type="checkbox" v-model="agree">
+            <hr>
+            {{agree}}
+        </div>
+        <div>
+            동의하시겠습니까?2 <input type="checkbox"
+                                    true-value="yes"
+                                    false-value="no"
+                                    v-model="agree2">
+            <hr>
+            {{agree2}}
+        </div>
+        <br>
+        <div>
+            v-model 디렉티브의 수식어(특별한 기능을 추가) : <br>
+            v-model.number : 입력된 값을 숫자형으로 자동형변환해서 mdoel의 property에 대입<br>
+            v-model.trim :  입력된 값의 앞뒤공백을 제거해서 model의 property에 대입<br>
+            
+            <input type="text" v-model.number="num">
+            <input type="text" v-model.trim="message">
+            <br>
+            message : {{message}}
+
+
+        </div>
+
+    </div>
+
+    <script src="http://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            name: "App",
+            data(){
+                return {
+                    // model 부분을 배열로 만듦
+                    skill: [],
+                    occ: "",
+                    agree: "true",
+                    agree2: "yes",
+                    num: 0,
+                    message: "      히히 "
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

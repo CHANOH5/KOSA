@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>   
+    <script type="module">
+        // import { add } from './export.js'
+        // import { test } from './export.js'
+        // js파일에서 export된 함수만 쓸 수 있다
+        import { add, test } from './export.js'
+        console.log(add(4))
+        test()
+    </script>
+</head>
+</html>

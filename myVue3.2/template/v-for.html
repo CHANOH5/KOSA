@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for.html</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 배열인 경우 v-for="value in 배열"
+                        v-for="(value, index) in 배열"
+             객체인 경우 v-for="(value, index) in 배열"
+        -->
+        <table>
+            <thead>
+                <tr>
+                    <th>상품번호</th>
+                    <th>상품명</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="p in products">
+                    <td>{{p.prodNo}}</td>
+                    <td>{{p.prodName}}</td>
+                </tr> 
+            </tbody>
+        </table>
+
+        <select>
+            <option v-for="(value, key) in regions" v-bind:value="key">
+                {{value}}
+            </option>
+        </select>
+
+        <!-- 여러 요소를 묶어서 반복 렌더링하기 -->
+        <template v-for="(value, key) in regions">
+            <div>{{value}}</div>
+            <hr>
+        </template>
+
+    </div>
+
+    <script src="http://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            name: "App",
+            data(){
+                return {
+                    products:[
+                            {prodNo:'C0001', prodName:'아메리카노'},
+                            {prodNo:'C0002', prodName:'쿨라임피지오'},
+                            {prodNo:'C0003', prodName:'캐모마일릴렉서'}
+                    ], // 객체 배열,
+                    regions:{
+                        ASIA: "아시아",
+                        AMERICA: "아메리카",
+                        AFRICA: "아프리카"
+                    }
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
