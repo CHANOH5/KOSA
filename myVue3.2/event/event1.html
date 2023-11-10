@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>event1.html</title>
+    </head>
+
+    <body>
+        <!-- 키보드 관련 수식어 : ctrl, alt, esc, enter, shift
+             키보드 이벤트 수식어 조합 :
+                ctrl+enter하려면 @keyup.ctrl.enter="..."
+                ex) ctrl + enter 이벤트처리
+                ex) ctrl + alt + enter 이벤트처리
+                ctrl+alt+enter 이벤트가 발생하면 1번, 2번 처리가 모두 됨
+                ctrl+alt+enter 이벤트가 발생한 경우 2번만 정확히 처리되려면
+                @keyup.ctrl.alt.enter.exact로 exact 수식어가 필요합니다
+            -->
+        <div id="app">
+            💸 잔액: {{balance}}<br>
+            💳 금액: <input type="text" v-model.number="amount"
+                      v-on:keyup.enter="search">
+            <!-- v-on:click="" => button이 클릭되었을 때 할일 -->
+            <button v-on:click="balance += amount">입금</button>
+            <button @click="withdraw">출금</button>
+            <button @click.once="withdraw">한번만 출금</button>
+        </div>
+        
+        <script src="http://unpkg.com/vue"></script>
+        <script>
+            let vm = Vue.createApp({
+                name: "App",
+                data() {
+                    return {
+                        amount: 0,
+                        balance: 0
+                    }
+                },
+                methods: {
+                    withdraw() {
+                        if(this.amount > this.balance) {
+                            alert('잔액이 부족합니다.')
+                        } else {
+                            this.balance -= this.amount
+                        }
+                    },
+                    search() {
+                        alert(this.amount)
+                    }
+                }
+            }).mount("#app")
+        </script>
+    </body>
+</html>

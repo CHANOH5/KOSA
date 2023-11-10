@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>event1.html</title>
+    </head>
+
+    <body>
+        <div id="app">
+            💸 잔액: {{balance}}<br>
+            💳 금액: <input type="text" v-model.number="amount">
+            <!-- v-on:click="" => button이 클릭되었을 때 할일 -->
+            <button v-on:click="balance += amount">입금</button>
+            <button v-on:click="withdraw">출금</button>
+        </div>
+        
+        <script src="http://unpkg.com/vue"></script>
+        <script>
+            let vm = Vue.createApp({
+                name: "App",
+                data() {
+                    return {
+                        amount: 0,
+                        balance: 0
+                    }
+                },
+                methods: {
+                    widthdraw() {
+                        if(this.amount > this.balance) {
+                            alert('잔액이 부족합니다.')
+                        }
+                        balance -= amount
+                    }
+                }
+            }).mount("#app")
+        </script>
+    </body>
+</html>

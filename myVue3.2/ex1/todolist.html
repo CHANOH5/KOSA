@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>06-12</title>
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+		}
+
+		.title {
+			text-align: center;
+			font-weight: bold;
+			font-size: 20pt;
+		}
+
+		.todo-done {
+			text-decoration: line-through;
+		}
+
+		.container {
+			padding: 10px 10px 10px 10px;
+		}
+
+		.card-borderless {
+			border: 0;
+			box-shadow: none;
+		}
+
+		.pointer {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app" class="container">
+		<div class="card card-body bg-light">
+			<div classe="title">:: Todolist App</div>
+		</div>
+		<div class="card card-default card-borderless">
+			<div class="card-body">
+				<div class="row mb-3">
+					<div class="col">
+						<div class="input-group">
+							<input id="msg" type="text" class="form-control" name="msg" placeholder="할일을 여기에 입력!" v-model="todo"/>
+							<span class="btn btn-primary input-group-addon" @:click="add">추가</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<ul class="list-group">
+							<li class="list-group-item list" v-for="p in todolist"
+								:class = "p.completed? 'list-group-item-success': ''">
+								<span class="pointer" @click="update(p.id)" 
+											 v-bind:class="p.completed? 'todo-done' : ''">{{p.todo}}</span>
+								<span class="float-end badge bg-secondary pointer" @click="del(p.id)">삭제</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		// 1. 할 일들에 관련된 식별자 필요
+		// 2. 데이터 : id, 내용, 완료여부(true, false), 
+		// 3. let todolist = {id:1, todo:’내용1’, completed: false} -> 배열형태
+
+		let idcnt = 0;
+		// 추가기능, 삭제기능, 아이템 하나 선택했을 때 발생하는 기능(변경)
+		Vue.createApp({
+			name: "App",
+			data() {
+				return {
+					todo : "",
+					todolist:[
+						// {id:1, todo: '내용1', completed: false},
+						// {id:2, todo: '내용2', completed: false},
+						// {id:3, todo: '내용3', completed: false},
+					]
+				}
+			},
+			methods: {
+				add() {
+					this.todolist.push({id: idcnt++, todo: this.todo, completed: false})
+					console.log('in add() this.todolist');
+					console.log(this.todolist);
+				},
+				del(id) {
+					console.log('in del() invoked');
+					console.log('del() id : ', id);
+					// console.log('del() todo.iindex : ', index);
+					const index = this.todolist.findIndex((todo) => todo.id === id) 
+					if( index !== -1 ){
+						this.todolist.splice(index, 1)
+					} else {
+						alert('삭제할 수 없습니다')
+					}
+				},
+				update(id) {
+					console.log('in update() invoked');
+					console.log('update() id : ', id);
+					// 여기서 findIndex는 주어진 조건을 만족하는 첫 번째 요소의 인덱스를 반환하며,
+					//  만족하는 요소가 없을 경우 -1을 반환합니다.
+					const index = this.todolist.findIndex((todo) => {
+						return todo.id == id
+					})
+					if( index == -1) {
+						alert ('일정을 완료할 수 없습니다')
+					} {
+						this.todolist[index].completed = !this.todolist[index].completed
+					}
+				}
+			},
+		}).mount("#app");
+
+		/*
+		추가(push) 메서드 : 추가버튼 클릭 되었을 때 todolist에 text박스에 입력한 내용을 추가 
+		삭제(splice) 메서드 : todolist에서 id를 이용해서 todd 아이템을 찾아 삭제
+		변경(find, index) 메서드 : 할일 한 건을 클릭하면 id를 이용해서 completed값을 토글(false->true, true->false)
+		*/ 
+
+	</script>
+</body>
+
+</html>
