@@ -4,13 +4,8 @@
 			<div class="title">:: Todolist App</div>           
             
             <TodoInput v-model:todo="todo" v-on:add="add" />
-            
-            <!-- 자식 컴포넌트가 보내 준 데이터 : {{ todo }} -->
-            <!-- <TodoList :todolist="todolist" v-on:del="del" v-on:update="updateItem" /> -->
-            <!-- 자식 컴포넌트가 보내 준 데이터 : {{ todolist }} -->
-            <!-- <span class="btn btn-primary input-group-addon" v-on:click="add">추가</span> -->
-
-            <TodoList :todolist="todolist" />
+            <TodoList :todolist="todolist" v-on:delete-todo="deletetodo" v-on:toggle-completed="togglecompleted" />
+        
         </div>
 </template>
 <script>
@@ -36,11 +31,11 @@ export default {
 
             this.todo= '';
         },
-        del(id) {
+        deletetodo(id) {
             const index = this.todolist.findIndex(todo => todo.id === id);
             this.todolist.splice(index, 1);
         },
-        updateItem(id) {
+        togglecompleted(id) {
             const index = this.todolist.findIndex(todo => todo.id === id);
             this.todolist[index].completed = !this.todolist[index].completed;
         },

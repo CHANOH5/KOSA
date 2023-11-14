@@ -17,16 +17,18 @@ public class ProductListJsonController extends ProductController {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		try {
-			Thread.sleep(10*1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
+//		try {
+//			Thread.sleep(10*1000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//		
 		// 응답형식 지정 -> JSON형태로 할거임
 		res.setContentType("application/json; charset=utf-8");
 //		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
-		res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+//		res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5173");
+
 		
 		// 응답 출력스트림 얻기
 		PrintWriter out = res.getWriter();

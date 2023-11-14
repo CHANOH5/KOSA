@@ -19,10 +19,6 @@
         methods: {
             add() {
                 this.$emit('add', this.todo);
-                // this.todo = ''; // 입력값을 초기화
-                // const ids = this.todolist.map(todo => { return todo.id })
-				// const maxId = ids.length == 0 ? 0 : Math.max(...ids)
-				// this.todolist.push({ id: maxId + 1, todo: this.todo, completed: false })
 			},
         },
         props: ["todo"]
