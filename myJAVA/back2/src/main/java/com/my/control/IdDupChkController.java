@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.my.exception.FindException;
 
-public class IIdDupChkController extends CustomerController {
+public class IdDupChkController extends CustomerController {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

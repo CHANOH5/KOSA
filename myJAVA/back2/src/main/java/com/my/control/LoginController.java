@@ -21,7 +21,9 @@ public class LoginController  extends CustomerController {
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		// 헤더 설정
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
+//		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
+		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5173");
+//		res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 //		
 		
@@ -54,6 +56,7 @@ public class LoginController  extends CustomerController {
 			session.setAttribute("loginedId", id);
 			
 			System.out.println(session);
+			System.out.println("로그인성공");
 			
 		} catch (FindException e) {
 			e.printStackTrace();

@@ -13,10 +13,10 @@ public class LogoutController extends CustomerController {
 	public String execute(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 	
 		// 헤더 설정
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
+//		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5173");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 //		
-		
+		res.setHeader("Access-Control-Allow-Headers", "*");
 		res.setContentType("application/json; charset=utf-8");
 		
 		

@@ -28,7 +28,7 @@ public class DispatcherServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		
+		System.out.println("in Dispatcherservlet의 init()");
 		env = new Properties(); // Properties객체 생성
 		//servletContext 객체 찾기
 		ServletContext sc = this.getServletContext();
@@ -42,12 +42,13 @@ public class DispatcherServlet extends HttpServlet {
 		} //try-catch
 	} // init
 
+	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+System.out.println("in Dispatcherservlet의 service()");
 		// 서블릿이 응답할 형식 지정하기
 //		res.setContentType("application/json;charset=utf-8");
 		// 헤더 설정
-		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5500");
+		res.setHeader("Access-Control-Allow-Origin", "http://192.168.1.22:5173");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
 		
 		System.out.println("req.getServletPath() = " + req.getServletPath());

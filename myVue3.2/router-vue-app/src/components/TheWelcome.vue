@@ -2,6 +2,7 @@
   The Welcome
   <ul>
     <li>
+      <!-- router-link속성으로 path설정 -->
       <router-link to="/">홈</router-link>
     </li>
     <li>
